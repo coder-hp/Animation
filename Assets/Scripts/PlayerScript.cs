@@ -2,76 +2,132 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class PlayerBehaviorParam
+{
+    public float float_1 = 0;
+    public int int_1 = 1;
+}
+
 public class PlayerScript : MonoBehaviour
 {
+    public static PlayerScript s_instance = null;
+
     public enum PlayerBehavior
     {
+        Idle,
         Walk,
         StopWalk,
         Run,
         StopRun,
-        Attack,
+        LightAttk,
+        Stab,
     }
 
-    public static PlayerScript s_instance = null;
+    public Transform weapon;
+
     Animator animator;
     CharacterController character;
 
     // 参数
-    float walkSpeed = 0.015f;
-    float runSpeed = 0.05f;
+    float walkSpeed = 0.02f;
+    float runSpeed = 0.07f;
+
+    public bool moveIsWalk = true;
+    public PlayerBehaviorParam playerBehaviorParam = new PlayerBehaviorParam();
 
     void Start()
     {
+        Application.targetFrameRate = 60;
         s_instance = this;
         animator = transform.GetComponent<Animator>();
         character = transform.GetComponent<CharacterController>();
+
+        //TrackGameObjScript.s_instance.setTargetObj(gameObject);
+        //CameraScript.s_instance.setTarget(gameObject);
+        FollowPlayer.s_instance.setTarget(gameObject);
     }
     
     void Update()
     {
         if (!character.isGrounded)
         {
-            character.Move(Vector3.down * 10.0f);        // 10.0f代表重力
+            character.Move(Vector3.down * 10f);        // 10.0f代表重力
         }
     }
 
-    public void actionInput(PlayerBehavior playerBehavior,float angle = 0)
+    public void actionInput(PlayerBehavior playerBehavior)
     {
         string currentAnimatorName = getCurrentAnimatorName();
         switch (playerBehavior)
         {
+            case PlayerBehavior.Idle:
+                {
+                    animator.Play("StandIdle");
+                    break;
+                }
+
             case PlayerBehavior.Walk:
                 {
-                    animator.Play("WalkForward");
-                    transform.localRotation = Quaternion.Euler(0,angle,0);
-                    character.Move(transform.forward * walkSpeed);
+                    if (currentAnimatorName == "StandIdle" || currentAnimatorName == "Run_Weapon" || currentAnimatorName == "WalkForward_Stop")
+                    {
+                        animator.Play("WalkForward");
+                        transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
+                        character.Move(transform.forward * walkSpeed * getFpsXiShu());
+                    }
+
+                    if (currentAnimatorName == "WalkForward")
+                    {
+                        transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
+                        character.Move(transform.forward * walkSpeed * getFpsXiShu());
+                    }
                     break;
                 }
 
             case PlayerBehavior.StopWalk:
                 {
-                    animator.Play("WalkForward_Stop");
+                    if (currentAnimatorName == "WalkForward")
+                    {
+                        animator.Play("WalkForward_Stop");
+                    }
                     break;
                 }
 
             case PlayerBehavior.Run:
                 {
-                    animator.Play("Sprint");
-                    transform.localRotation = Quaternion.Euler(0, angle, 0);
-                    character.Move(transform.forward * runSpeed);
+                    if (currentAnimatorName == "StandIdle" || currentAnimatorName == "WalkForward" || currentAnimatorName == "RunForward_Stop")
+                    {
+                        animator.Play("Run_Weapon");
+                        transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
+                        character.Move(transform.forward * runSpeed * getFpsXiShu());
+                    }
+
+                    if (currentAnimatorName == "Run_Weapon")
+                    {
+                        transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
+                        character.Move(transform.forward * runSpeed * getFpsXiShu());
+                    }
                     break;
                 }
 
             case PlayerBehavior.StopRun:
                 {
-                    animator.Play("Sprint_Stop");
+                    if (currentAnimatorName == "Run_Weapon")
+                    {
+                        animator.Play("RunForward_Stop");
+                    }
                     break;
                 }
 
-            case PlayerBehavior.Attack:
+            case PlayerBehavior.LightAttk:
                 {
-                    animator.Play("LightAttk1");
+                    AudioScript.getInstance().playSound("Audios/atk");
+                    animator.Play("LightAttk" + playerBehaviorParam.int_1);
+                    break;
+                }
+
+            case PlayerBehavior.Stab:
+                {
+                    animator.Play("Stab" + playerBehaviorParam.int_1);
                     break;
                 }
         }
@@ -82,7 +138,8 @@ public class PlayerScript : MonoBehaviour
     {
     }
 
-    string getCurrentAnimatorName()
+    // 获取当前播放动画名称
+    public string getCurrentAnimatorName()
     {
         if (animator.GetCurrentAnimatorClipInfo(0).Length > 0)
         {
@@ -90,5 +147,10 @@ public class PlayerScript : MonoBehaviour
         }
 
         return "";
+    }
+
+    float getFpsXiShu()
+    {
+        return Time.deltaTime / (1f / 60f);
     }
 }
