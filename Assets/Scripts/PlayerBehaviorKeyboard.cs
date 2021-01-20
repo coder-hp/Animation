@@ -16,37 +16,39 @@ public class PlayerBehaviorKeyboard : MonoBehaviour
             return;
         }
 
+        float cameraAngle_y = CameraScript.s_instance.transform.eulerAngles.y;
+
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
         {
-            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Walk, -45);
+            PlayerScript.s_instance.actionInput(PlayerScript.s_instance.moveIsWalk ? PlayerScript.PlayerBehavior.Walk: PlayerScript.PlayerBehavior.Run, -45 + cameraAngle_y);
         }
         else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
         {
-            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Walk, 45);
+            PlayerScript.s_instance.actionInput(PlayerScript.s_instance.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run, 45 + cameraAngle_y);
         }
         else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
         {
-            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Walk, -135);
+            PlayerScript.s_instance.actionInput(PlayerScript.s_instance.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run, -135 + cameraAngle_y);
         }
         else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
         {
-            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Walk, 135);
+            PlayerScript.s_instance.actionInput(PlayerScript.s_instance.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run, 135 + cameraAngle_y);
         }
         else if(Input.GetKey(KeyCode.W))
         {
-            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Walk,0);
+            PlayerScript.s_instance.actionInput(PlayerScript.s_instance.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run, 0 + cameraAngle_y);
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Walk, -90);
+            PlayerScript.s_instance.actionInput(PlayerScript.s_instance.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run, -90 + cameraAngle_y);
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Walk, -180);
+            PlayerScript.s_instance.actionInput(PlayerScript.s_instance.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run, -180 + cameraAngle_y);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Walk, 90);
+            PlayerScript.s_instance.actionInput(PlayerScript.s_instance.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run, 90 + cameraAngle_y);
         }
 
         if(Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
@@ -57,6 +59,12 @@ public class PlayerBehaviorKeyboard : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Attack);
+        }
+
+        // 走路/跑步 切换
+        if(Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            PlayerScript.s_instance.moveIsWalk = !PlayerScript.s_instance.moveIsWalk;
         }
     }
 }
