@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,10 +36,14 @@ public class PlayerScript : MonoBehaviour
     public bool moveIsWalk = true;
     public PlayerBehaviorParam playerBehaviorParam = new PlayerBehaviorParam();
 
+    void Awake()
+    {
+        s_instance = this;
+    }
+
     void Start()
     {
         Application.targetFrameRate = 60;
-        s_instance = this;
         animator = transform.GetComponent<Animator>();
         character = transform.GetComponent<CharacterController>();
 

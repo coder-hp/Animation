@@ -13,7 +13,7 @@ public class FollowPlayer : MonoBehaviour
     Transform target = null;
     Vector3 offSetPostion;          // 镜头位置偏移量
     bool isCanRotate_h = true;      // 鼠标左右滑动
-    bool isCanRotate_v = false;     // 鼠标上下滑动
+    bool isCanRotate_v = true;      // 鼠标上下滑动
 
     void Awake()
     {
@@ -34,27 +34,12 @@ public class FollowPlayer : MonoBehaviour
         }
 
         transform.position = offSetPostion + target.position;
-
-        //处理视野的旋转
-        RotateView();
-
-        //处理视野的拉近拉远效果
-        ScrollView();
     }
 
-    void ScrollView()
-    {
-        distance = offSetPostion.magnitude;                             // 返回向量的长度
-        distance -= Input.GetAxis("Mouse ScrollWheel") * scrollSpeed;   // 返回虚拟轴的值Mouse ScrollWheel：鼠标滑轮
-        distance = Mathf.Clamp(distance, 2, 18);                        // 限制镜头最近和最远距离
-        offSetPostion = offSetPostion.normalized * distance;
-    }
-
-    void RotateView()
+    public void RotateView(float mouse_x, float mouse_y)
     {
         if (isCanRotate_h)
         {
-            float mouse_x = Input.GetAxis("Mouse X");   //  获取鼠标X轴移动
             if (mouse_x != 0)
             {
                 transform.RotateAround(target.position, target.up, rotateSpeed * mouse_x);
@@ -63,7 +48,6 @@ public class FollowPlayer : MonoBehaviour
 
         if (isCanRotate_v)
         {
-            float mouse_y = Input.GetAxis("Mouse Y");   //  获取鼠标Y轴移动
             if (mouse_y != 0)
             {
                 Vector3 originalPos = transform.position;
@@ -80,5 +64,14 @@ public class FollowPlayer : MonoBehaviour
         }
 
         offSetPostion = transform.position - target.position;
+        transform.position = offSetPostion + target.position;
+    }
+
+    public void ScrollView(float value)
+    {
+        distance = offSetPostion.magnitude;                             // 返回向量的长度
+        distance -= value * scrollSpeed;                                // 返回虚拟轴的值Mouse ScrollWheel：鼠标滑轮
+        distance = Mathf.Clamp(distance, 2, 18);                        // 限制镜头最近和最远距离
+        offSetPostion = offSetPostion.normalized * distance;
     }
 }
