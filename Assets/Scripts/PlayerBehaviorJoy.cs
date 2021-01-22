@@ -6,6 +6,11 @@ public class PlayerBehaviorJoy : MonoBehaviour
 {
     PlayerScript playerScript = null;
 
+    bool isCanClick_A = true;
+    bool isCanClick_B = true;
+    bool isCanClick_X = true;
+    bool isCanClick_Y = true;
+
     void Start()
     {
         playerScript = PlayerScript.s_instance;
@@ -17,6 +22,8 @@ public class PlayerBehaviorJoy : MonoBehaviour
         {
             return;
         }
+
+        string currentAnimatorName = PlayerScript.s_instance.getCurrentAnimatorName();
 
         // 镜头移动
         {
@@ -104,65 +111,79 @@ public class PlayerBehaviorJoy : MonoBehaviour
         {
             if(Input.GetAxis("Joy_A") > 0)
             {
-                string currentAnimatorName = PlayerScript.s_instance.getCurrentAnimatorName();
+                if (isCanClick_A)
+                {
+                    isCanClick_A = false;
 
-                if (currentAnimatorName == "LightAttk1")
-                {
-                    if (ActionEventFrame.s_instance.LightAttk1 == ActionEventFrame.ComboState.WaitInput)
+                    if (currentAnimatorName == "LightAttk1")
                     {
-                        ActionEventFrame.s_instance.LightAttk1 = ActionEventFrame.ComboState.InputSuccess;
+                        if (ActionEventFrame.s_instance.LightAttk1 == ActionEventFrame.ComboState.WaitInput)
+                        {
+                            ActionEventFrame.s_instance.LightAttk1 = ActionEventFrame.ComboState.InputSuccess;
+                        }
+                    }
+                    else if (currentAnimatorName == "LightAttk2")
+                    {
+                        if (ActionEventFrame.s_instance.LightAttk2 == ActionEventFrame.ComboState.WaitInput)
+                        {
+                            ActionEventFrame.s_instance.LightAttk2 = ActionEventFrame.ComboState.InputSuccess;
+                        }
+                    }
+                    else if (currentAnimatorName == "LightAttk3")
+                    {
+                        if (ActionEventFrame.s_instance.LightAttk3 == ActionEventFrame.ComboState.WaitInput)
+                        {
+                            ActionEventFrame.s_instance.LightAttk3 = ActionEventFrame.ComboState.InputSuccess;
+                        }
+                    }
+                    else if (currentAnimatorName == "LightAttk4")
+                    {
+                    }
+                    else
+                    {
+                        PlayerScript.s_instance.playerBehaviorParam.int_1 = 1;
+                        PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.LightAttk);
                     }
                 }
-                else if (currentAnimatorName == "LightAttk2")
-                {
-                    if (ActionEventFrame.s_instance.LightAttk2 == ActionEventFrame.ComboState.WaitInput)
-                    {
-                        ActionEventFrame.s_instance.LightAttk2 = ActionEventFrame.ComboState.InputSuccess;
-                    }
-                }
-                else if (currentAnimatorName == "LightAttk3")
-                {
-                    if (ActionEventFrame.s_instance.LightAttk3 == ActionEventFrame.ComboState.WaitInput)
-                    {
-                        ActionEventFrame.s_instance.LightAttk3 = ActionEventFrame.ComboState.InputSuccess;
-                    }
-                }
-                else if (currentAnimatorName == "LightAttk4")
-                {
-                }
-                else
-                {
-                    PlayerScript.s_instance.playerBehaviorParam.int_1 = 1;
-                    PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.LightAttk);
-                }
+            }
+            else
+            {
+                isCanClick_A = true;
             }
 
             if (Input.GetAxis("Joy_B") > 0)
             {
-                string currentAnimatorName = PlayerScript.s_instance.getCurrentAnimatorName();
+                if (isCanClick_B)
+                {
+                    isCanClick_B = false;
 
-                if (currentAnimatorName == "Stab1")
-                {
-                    if (ActionEventFrame.s_instance.Stab1 == ActionEventFrame.ComboState.WaitInput)
+                    if (currentAnimatorName == "Stab1")
                     {
-                        ActionEventFrame.s_instance.Stab1 = ActionEventFrame.ComboState.InputSuccess;
+                        if (ActionEventFrame.s_instance.Stab1 == ActionEventFrame.ComboState.WaitInput)
+                        {
+                            ActionEventFrame.s_instance.Stab1 = ActionEventFrame.ComboState.InputSuccess;
+                        }
+                    }
+                    else if (currentAnimatorName == "Stab2")
+                    {
+                        if (ActionEventFrame.s_instance.Stab2 == ActionEventFrame.ComboState.WaitInput)
+                        {
+                            ActionEventFrame.s_instance.Stab2 = ActionEventFrame.ComboState.InputSuccess;
+                        }
+                    }
+                    else if (currentAnimatorName == "Stab3")
+                    {
+                    }
+                    else
+                    {
+                        PlayerScript.s_instance.playerBehaviorParam.int_1 = 1;
+                        PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Stab);
                     }
                 }
-                else if (currentAnimatorName == "Stab2")
-                {
-                    if (ActionEventFrame.s_instance.Stab2 == ActionEventFrame.ComboState.WaitInput)
-                    {
-                        ActionEventFrame.s_instance.Stab2 = ActionEventFrame.ComboState.InputSuccess;
-                    }
-                }
-                else if (currentAnimatorName == "Stab3")
-                {
-                }
-                else
-                {
-                    PlayerScript.s_instance.playerBehaviorParam.int_1 = 1;
-                    PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Stab);
-                }
+            }
+            else
+            {
+                isCanClick_B = true;
             }
         }
     }

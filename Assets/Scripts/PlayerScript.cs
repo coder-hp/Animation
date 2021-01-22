@@ -22,6 +22,7 @@ public class PlayerScript : MonoBehaviour
         StopRun,
         LightAttk,
         Stab,
+        Block,              // 格挡 手柄待做
     }
 
     public Transform weapon;
@@ -133,6 +134,12 @@ public class PlayerScript : MonoBehaviour
             case PlayerBehavior.Stab:
                 {
                     animator.Play("Stab" + playerBehaviorParam.int_1);
+                    break;
+                }
+
+            case PlayerBehavior.Block:
+                {
+                    animator.Play("Block_GetHit_Right");
                     break;
                 }
         }

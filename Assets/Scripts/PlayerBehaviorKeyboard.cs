@@ -100,6 +100,7 @@ public class PlayerBehaviorKeyboard : MonoBehaviour
         {
             bool isMouseButton0 = Input.GetMouseButtonDown(0);
             bool isMouseButton1 = Input.GetMouseButtonDown(1);
+            bool isMouseButton2 = Input.GetMouseButtonDown(2);
             if (isMouseButton0 || isMouseButton1)
             {
                 string currentAnimatorName = PlayerScript.s_instance.getCurrentAnimatorName();
@@ -158,6 +159,11 @@ public class PlayerBehaviorKeyboard : MonoBehaviour
                         PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Stab);
                     }
                 }
+            }
+            // 格挡
+            else if(isMouseButton2)
+            {
+                PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Block);
             }
         }
     }
