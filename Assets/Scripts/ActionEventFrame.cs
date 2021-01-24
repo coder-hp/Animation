@@ -14,16 +14,17 @@ public class ActionEventFrame : MonoBehaviour
 
     public static ActionEventFrame s_instance = null;
 
-    public ComboState LightAttk1 = ComboState.Disable;
-    public ComboState LightAttk2 = ComboState.Disable;
-    public ComboState LightAttk3 = ComboState.Disable;
-
-    public ComboState Stab1 = ComboState.Disable;
-    public ComboState Stab2 = ComboState.Disable;
+    public long actionEndTime = 0;
+    public string actionEndName = "";
 
     void Awake()
     {
         s_instance = this;
+    }
+
+    public void walkSound()
+    {
+        AudioScript.getInstance().playSound("Audios/walk");
     }
 
     public void fanWeaopn()
@@ -36,99 +37,45 @@ public class ActionEventFrame : MonoBehaviour
         PlayerScript.s_instance.weapon.localScale = new Vector3(1, 1, 1);
     }
 
-    public void LightAttk1_Wait_Combo()
-    {
-        LightAttk1 = ComboState.WaitInput;
-    }
-
     public void LightAttk1_End()
     {
-        if (LightAttk1 == ComboState.InputSuccess)
-        {
-            PlayerScript.s_instance.playerBehaviorParam.int_1 = 2;
-            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.LightAttk);
-        }
-        else
-        {
-
-            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Idle);
-        }
-        LightAttk1 = ComboState.Disable;
-    }
-
-    public void LightAttk2_Wait_Combo()
-    {
-        LightAttk2 = ComboState.WaitInput;
+        actionEndTime = CommonUtil.getTimeStamp_Millisecond();
+        actionEndName = "LightAttk1";
     }
 
     public void LightAttk2_End()
     {
-        if (LightAttk2 == ComboState.InputSuccess)
-        {
-            PlayerScript.s_instance.playerBehaviorParam.int_1 = 3;
-            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.LightAttk);
-        }
-        else
-        {
-            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Idle);
-        }
-        LightAttk2 = ComboState.Disable;
-    }
-
-    public void LightAttk3_Wait_Combo()
-    {
-        LightAttk3 = ComboState.WaitInput;
+        actionEndTime = CommonUtil.getTimeStamp_Millisecond();
+        actionEndName = "LightAttk2";
     }
 
     public void LightAttk3_End()
     {
-        if (LightAttk3 == ComboState.InputSuccess)
-        {
-            PlayerScript.s_instance.playerBehaviorParam.int_1 = 4;
-            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.LightAttk);
-        }
-        else
-        {
-            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Idle);
-        }
-        LightAttk3 = ComboState.Disable;
+        actionEndTime = CommonUtil.getTimeStamp_Millisecond();
+        actionEndName = "LightAttk3";
     }
 
-    public void Stab1_Wait_Combo()
+    public void LightAttk4_End()
     {
-        Stab1 = ComboState.WaitInput;
+        actionEndTime = CommonUtil.getTimeStamp_Millisecond();
+        actionEndName = "LightAttk4";
     }
 
     public void Stab1_End()
     {
-        if (Stab1 == ComboState.InputSuccess)
-        {
-            PlayerScript.s_instance.playerBehaviorParam.int_1 = 2;
-            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Stab);
-        }
-        else
-        {
-            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Idle);
-        }
-        Stab1 = ComboState.Disable;
-    }
-
-    public void Stab2_Wait_Combo()
-    {
-        Stab2 = ComboState.WaitInput;
+        actionEndTime = CommonUtil.getTimeStamp_Millisecond();
+        actionEndName = "Stab1";
     }
 
     public void Stab2_End()
     {
-        if (Stab2 == ComboState.InputSuccess)
-        {
-            PlayerScript.s_instance.playerBehaviorParam.int_1 = 3;
-            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Stab);
-        }
-        else
-        {
-            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Idle);
-        }
-        Stab2 = ComboState.Disable;
+        actionEndTime = CommonUtil.getTimeStamp_Millisecond();
+        actionEndName = "Stab2";
+    }
+
+    public void Stab3_End()
+    {
+        actionEndTime = CommonUtil.getTimeStamp_Millisecond();
+        actionEndName = "Stab3";
     }
 }

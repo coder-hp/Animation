@@ -1,363 +1,950 @@
 fileFormatVersion: 2
 guid: cf3919c703bee124db95a9e6dbc11e6e
-timeCreated: 1494304241
-licenseType: Store
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: Arashi:driver_root
-    100002: Arashi:master_anim
-    100004: Arashi:master_anim_space_switcher
-    100006: Arashi:master_anim_space_switcher_follow
-    100008: Arashi:rig_grp
-    100010: Arashi:root_anim
-    100012: Back_Sleeve_01
-    100014: Back_Sleeve_02
-    100016: Back_Sleeve_03
-    100018: ball_l
-    100020: ball_r
-    100022: calf_l
-    100024: calf_r
-    100026: calf_twist_01_l
-    100028: calf_twist_01_r
-    100030: clavicle_l
-    100032: clavicle_r
-    100034: Cloth_back_01
-    100036: Cloth_back_02
-    100038: Cloth_back_03
-    100040: Cloth_back_04
-    100042: Cloth_l_01
-    100044: Cloth_l_02
-    100046: Cloth_l_03
-    100048: Cloth_l_04
-    100050: Cloth_r_01
-    100052: Cloth_r_02
-    100054: Cloth_r_03
-    100056: Cloth_r_04
-    100058: ClothF_l_01
-    100060: ClothF_l_02
-    100062: ClothF_l_03
-    100064: ClothF_l_04
-    100066: ClothF_r_01
-    100068: ClothF_r_02
-    100070: ClothF_r_03
-    100072: ClothF_r_04
-    100074: foot_l
-    100076: foot_r
-    100078: hand_l
-    100080: hand_r
-    100082: head
-    100084: index_01_l
-    100086: index_01_r
-    100088: index_02_l
-    100090: index_02_r
-    100092: index_03_l
-    100094: index_03_r
-    100096: Jiggle
-    100098: L_BackSteeve
-    100100: L_BindWeapon
-    100102: L_Body
-    100104: L_Cloth
-    100106: L_Hair
-    100108: L_Knot
-    100110: L_Rope_1
-    100112: L_Rope_2
-    100114: lowerarm_l
-    100116: lowerarm_r
-    100118: lowerarm_twist_01_l
-    100120: lowerarm_twist_01_r
-    100122: middle_01_l
-    100124: middle_01_r
-    100126: middle_02_l
-    100128: middle_02_r
-    100130: middle_03_l
-    100132: middle_03_r
-    100134: neck_01
-    100136: pelvis
-    100138: pinky_01_l
-    100140: pinky_01_r
-    100142: pinky_02_l
-    100144: pinky_02_r
-    100146: pinky_03_l
-    100148: pinky_03_r
-    100150: ring_01_l
-    100152: ring_01_r
-    100154: ring_02_l
-    100156: ring_02_r
-    100158: ring_03_l
-    100160: ring_03_r
-    100162: root
-    100164: RopeL_01
-    100166: RopeL_02
-    100168: RopeL_03
-    100170: RopeR_01
-    100172: RopeR_02
-    100174: RopeR_03
-    100176: //RootNode
-    100178: spine_01
-    100180: spine_02
-    100182: spine_03
-    100184: thigh_l
-    100186: thigh_r
-    100188: thigh_twist_01_l
-    100190: thigh_twist_01_r
-    100192: thumb_01_l
-    100194: thumb_01_r
-    100196: thumb_02_l
-    100198: thumb_02_r
-    100200: thumb_03_l
-    100202: thumb_03_r
-    100204: Trouser_l_01
-    100206: Trouser_l_02
-    100208: Trouser_l_03
-    100210: Trouser_r_01
-    100212: Trouser_r_02
-    100214: Trouser_r_03
-    100216: upperarm_l
-    100218: upperarm_r
-    100220: upperarm_twist_01_l
-    100222: upperarm_twist_01_r
-    100224: Weapon_R
-    400000: Arashi:driver_root
-    400002: Arashi:master_anim
-    400004: Arashi:master_anim_space_switcher
-    400006: Arashi:master_anim_space_switcher_follow
-    400008: Arashi:rig_grp
-    400010: Arashi:root_anim
-    400012: Back_Sleeve_01
-    400014: Back_Sleeve_02
-    400016: Back_Sleeve_03
-    400018: ball_l
-    400020: ball_r
-    400022: calf_l
-    400024: calf_r
-    400026: calf_twist_01_l
-    400028: calf_twist_01_r
-    400030: clavicle_l
-    400032: clavicle_r
-    400034: Cloth_back_01
-    400036: Cloth_back_02
-    400038: Cloth_back_03
-    400040: Cloth_back_04
-    400042: Cloth_l_01
-    400044: Cloth_l_02
-    400046: Cloth_l_03
-    400048: Cloth_l_04
-    400050: Cloth_r_01
-    400052: Cloth_r_02
-    400054: Cloth_r_03
-    400056: Cloth_r_04
-    400058: ClothF_l_01
-    400060: ClothF_l_02
-    400062: ClothF_l_03
-    400064: ClothF_l_04
-    400066: ClothF_r_01
-    400068: ClothF_r_02
-    400070: ClothF_r_03
-    400072: ClothF_r_04
-    400074: foot_l
-    400076: foot_r
-    400078: hand_l
-    400080: hand_r
-    400082: head
-    400084: index_01_l
-    400086: index_01_r
-    400088: index_02_l
-    400090: index_02_r
-    400092: index_03_l
-    400094: index_03_r
-    400096: Jiggle
-    400098: L_BackSteeve
-    400100: L_BindWeapon
-    400102: L_Body
-    400104: L_Cloth
-    400106: L_Hair
-    400108: L_Knot
-    400110: L_Rope_1
-    400112: L_Rope_2
-    400114: lowerarm_l
-    400116: lowerarm_r
-    400118: lowerarm_twist_01_l
-    400120: lowerarm_twist_01_r
-    400122: middle_01_l
-    400124: middle_01_r
-    400126: middle_02_l
-    400128: middle_02_r
-    400130: middle_03_l
-    400132: middle_03_r
-    400134: neck_01
-    400136: pelvis
-    400138: pinky_01_l
-    400140: pinky_01_r
-    400142: pinky_02_l
-    400144: pinky_02_r
-    400146: pinky_03_l
-    400148: pinky_03_r
-    400150: ring_01_l
-    400152: ring_01_r
-    400154: ring_02_l
-    400156: ring_02_r
-    400158: ring_03_l
-    400160: ring_03_r
-    400162: root
-    400164: RopeL_01
-    400166: RopeL_02
-    400168: RopeL_03
-    400170: RopeR_01
-    400172: RopeR_02
-    400174: RopeR_03
-    400176: //RootNode
-    400178: spine_01
-    400180: spine_02
-    400182: spine_03
-    400184: thigh_l
-    400186: thigh_r
-    400188: thigh_twist_01_l
-    400190: thigh_twist_01_r
-    400192: thumb_01_l
-    400194: thumb_01_r
-    400196: thumb_02_l
-    400198: thumb_02_r
-    400200: thumb_03_l
-    400202: thumb_03_r
-    400204: Trouser_l_01
-    400206: Trouser_l_02
-    400208: Trouser_l_03
-    400210: Trouser_r_01
-    400212: Trouser_r_02
-    400214: Trouser_r_03
-    400216: upperarm_l
-    400218: upperarm_r
-    400220: upperarm_twist_01_l
-    400222: upperarm_twist_01_r
-    400224: Weapon_R
-    4300000: L_Hair
-    4300002: L_Rope_1
-    4300004: L_Rope_2
-    4300006: L_Knot
-    4300008: L_BindWeapon
-    4300010: L_BackSteeve
-    4300012: L_Cloth
-    4300014: L_Body
-    7400000: Attack_01
-    7400002: Attack_02
-    7400004: Attack_03
-    7400006: Attack_04
-    7400008: Attack_05
-    7400010: Attack_06
-    7400012: Attack_07
-    7400014: Attack_08
-    7400016: Crouch
-    7400018: Crouch_move_F
-    7400020: Crouch_move_L
-    7400022: Crouch_move_R
-    7400024: Dame_01
-    7400026: Dame_02
-    7400028: Death_01
-    7400030: Death_02
-    7400032: Getup_Back
-    7400034: Getup_Front
-    7400036: Idle_Weapon
-    7400038: Idle_nonWeapon
-    7400040: Idle_Sit
-    7400042: Jump_End
-    7400044: Jump_Loop
-    7400046: Jump_Start
-    7400048: Run_Back
-    7400050: Run_Left
-    7400052: Run_nonWeapon
-    7400054: Run_Right
-    7400056: Run_Weapon
-    7400058: ShortAttack_01
-    7400060: ShortAttack_02
-    7400062: ShortAttack_03
-    7400064: ShortAttack_04
-    7400066: ShortAttack_05
-    7400068: ShortAttack_06
-    7400070: ShortAttack_07
-    7400072: ShortAttack_08
-    7400074: Sit
-    7400076: Sit_Idle
-    7400078: Strafe_B
-    7400080: Strafe_F
-    7400082: Strafe_L
-    7400084: Strafe_R
-    7400086: Walk_nonWeapon
-    7400088: Wak_Weapon
-    7400090: T_pose
-    9500000: //RootNode
-    13700000: L_BackSteeve
-    13700002: L_BindWeapon
-    13700004: L_Body
-    13700006: L_Cloth
-    13700008: L_Hair
-    13700010: L_Knot
-    13700012: L_Rope_1
-    13700014: L_Rope_2
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Arashi:driver_root
+  - first:
+      1: 100002
+    second: Arashi:master_anim
+  - first:
+      1: 100004
+    second: Arashi:master_anim_space_switcher
+  - first:
+      1: 100006
+    second: Arashi:master_anim_space_switcher_follow
+  - first:
+      1: 100008
+    second: Arashi:rig_grp
+  - first:
+      1: 100010
+    second: Arashi:root_anim
+  - first:
+      1: 100012
+    second: Back_Sleeve_01
+  - first:
+      1: 100014
+    second: Back_Sleeve_02
+  - first:
+      1: 100016
+    second: Back_Sleeve_03
+  - first:
+      1: 100018
+    second: ball_l
+  - first:
+      1: 100020
+    second: ball_r
+  - first:
+      1: 100022
+    second: calf_l
+  - first:
+      1: 100024
+    second: calf_r
+  - first:
+      1: 100026
+    second: calf_twist_01_l
+  - first:
+      1: 100028
+    second: calf_twist_01_r
+  - first:
+      1: 100030
+    second: clavicle_l
+  - first:
+      1: 100032
+    second: clavicle_r
+  - first:
+      1: 100034
+    second: Cloth_back_01
+  - first:
+      1: 100036
+    second: Cloth_back_02
+  - first:
+      1: 100038
+    second: Cloth_back_03
+  - first:
+      1: 100040
+    second: Cloth_back_04
+  - first:
+      1: 100042
+    second: Cloth_l_01
+  - first:
+      1: 100044
+    second: Cloth_l_02
+  - first:
+      1: 100046
+    second: Cloth_l_03
+  - first:
+      1: 100048
+    second: Cloth_l_04
+  - first:
+      1: 100050
+    second: Cloth_r_01
+  - first:
+      1: 100052
+    second: Cloth_r_02
+  - first:
+      1: 100054
+    second: Cloth_r_03
+  - first:
+      1: 100056
+    second: Cloth_r_04
+  - first:
+      1: 100058
+    second: ClothF_l_01
+  - first:
+      1: 100060
+    second: ClothF_l_02
+  - first:
+      1: 100062
+    second: ClothF_l_03
+  - first:
+      1: 100064
+    second: ClothF_l_04
+  - first:
+      1: 100066
+    second: ClothF_r_01
+  - first:
+      1: 100068
+    second: ClothF_r_02
+  - first:
+      1: 100070
+    second: ClothF_r_03
+  - first:
+      1: 100072
+    second: ClothF_r_04
+  - first:
+      1: 100074
+    second: foot_l
+  - first:
+      1: 100076
+    second: foot_r
+  - first:
+      1: 100078
+    second: hand_l
+  - first:
+      1: 100080
+    second: hand_r
+  - first:
+      1: 100082
+    second: head
+  - first:
+      1: 100084
+    second: index_01_l
+  - first:
+      1: 100086
+    second: index_01_r
+  - first:
+      1: 100088
+    second: index_02_l
+  - first:
+      1: 100090
+    second: index_02_r
+  - first:
+      1: 100092
+    second: index_03_l
+  - first:
+      1: 100094
+    second: index_03_r
+  - first:
+      1: 100096
+    second: Jiggle
+  - first:
+      1: 100098
+    second: L_BackSteeve
+  - first:
+      1: 100100
+    second: L_BindWeapon
+  - first:
+      1: 100102
+    second: L_Body
+  - first:
+      1: 100104
+    second: L_Cloth
+  - first:
+      1: 100106
+    second: L_Hair
+  - first:
+      1: 100108
+    second: L_Knot
+  - first:
+      1: 100110
+    second: L_Rope_1
+  - first:
+      1: 100112
+    second: L_Rope_2
+  - first:
+      1: 100114
+    second: lowerarm_l
+  - first:
+      1: 100116
+    second: lowerarm_r
+  - first:
+      1: 100118
+    second: lowerarm_twist_01_l
+  - first:
+      1: 100120
+    second: lowerarm_twist_01_r
+  - first:
+      1: 100122
+    second: middle_01_l
+  - first:
+      1: 100124
+    second: middle_01_r
+  - first:
+      1: 100126
+    second: middle_02_l
+  - first:
+      1: 100128
+    second: middle_02_r
+  - first:
+      1: 100130
+    second: middle_03_l
+  - first:
+      1: 100132
+    second: middle_03_r
+  - first:
+      1: 100134
+    second: neck_01
+  - first:
+      1: 100136
+    second: pelvis
+  - first:
+      1: 100138
+    second: pinky_01_l
+  - first:
+      1: 100140
+    second: pinky_01_r
+  - first:
+      1: 100142
+    second: pinky_02_l
+  - first:
+      1: 100144
+    second: pinky_02_r
+  - first:
+      1: 100146
+    second: pinky_03_l
+  - first:
+      1: 100148
+    second: pinky_03_r
+  - first:
+      1: 100150
+    second: ring_01_l
+  - first:
+      1: 100152
+    second: ring_01_r
+  - first:
+      1: 100154
+    second: ring_02_l
+  - first:
+      1: 100156
+    second: ring_02_r
+  - first:
+      1: 100158
+    second: ring_03_l
+  - first:
+      1: 100160
+    second: ring_03_r
+  - first:
+      1: 100162
+    second: root
+  - first:
+      1: 100164
+    second: RopeL_01
+  - first:
+      1: 100166
+    second: RopeL_02
+  - first:
+      1: 100168
+    second: RopeL_03
+  - first:
+      1: 100170
+    second: RopeR_01
+  - first:
+      1: 100172
+    second: RopeR_02
+  - first:
+      1: 100174
+    second: RopeR_03
+  - first:
+      1: 100176
+    second: //RootNode
+  - first:
+      1: 100178
+    second: spine_01
+  - first:
+      1: 100180
+    second: spine_02
+  - first:
+      1: 100182
+    second: spine_03
+  - first:
+      1: 100184
+    second: thigh_l
+  - first:
+      1: 100186
+    second: thigh_r
+  - first:
+      1: 100188
+    second: thigh_twist_01_l
+  - first:
+      1: 100190
+    second: thigh_twist_01_r
+  - first:
+      1: 100192
+    second: thumb_01_l
+  - first:
+      1: 100194
+    second: thumb_01_r
+  - first:
+      1: 100196
+    second: thumb_02_l
+  - first:
+      1: 100198
+    second: thumb_02_r
+  - first:
+      1: 100200
+    second: thumb_03_l
+  - first:
+      1: 100202
+    second: thumb_03_r
+  - first:
+      1: 100204
+    second: Trouser_l_01
+  - first:
+      1: 100206
+    second: Trouser_l_02
+  - first:
+      1: 100208
+    second: Trouser_l_03
+  - first:
+      1: 100210
+    second: Trouser_r_01
+  - first:
+      1: 100212
+    second: Trouser_r_02
+  - first:
+      1: 100214
+    second: Trouser_r_03
+  - first:
+      1: 100216
+    second: upperarm_l
+  - first:
+      1: 100218
+    second: upperarm_r
+  - first:
+      1: 100220
+    second: upperarm_twist_01_l
+  - first:
+      1: 100222
+    second: upperarm_twist_01_r
+  - first:
+      1: 100224
+    second: Weapon_R
+  - first:
+      4: 400000
+    second: Arashi:driver_root
+  - first:
+      4: 400002
+    second: Arashi:master_anim
+  - first:
+      4: 400004
+    second: Arashi:master_anim_space_switcher
+  - first:
+      4: 400006
+    second: Arashi:master_anim_space_switcher_follow
+  - first:
+      4: 400008
+    second: Arashi:rig_grp
+  - first:
+      4: 400010
+    second: Arashi:root_anim
+  - first:
+      4: 400012
+    second: Back_Sleeve_01
+  - first:
+      4: 400014
+    second: Back_Sleeve_02
+  - first:
+      4: 400016
+    second: Back_Sleeve_03
+  - first:
+      4: 400018
+    second: ball_l
+  - first:
+      4: 400020
+    second: ball_r
+  - first:
+      4: 400022
+    second: calf_l
+  - first:
+      4: 400024
+    second: calf_r
+  - first:
+      4: 400026
+    second: calf_twist_01_l
+  - first:
+      4: 400028
+    second: calf_twist_01_r
+  - first:
+      4: 400030
+    second: clavicle_l
+  - first:
+      4: 400032
+    second: clavicle_r
+  - first:
+      4: 400034
+    second: Cloth_back_01
+  - first:
+      4: 400036
+    second: Cloth_back_02
+  - first:
+      4: 400038
+    second: Cloth_back_03
+  - first:
+      4: 400040
+    second: Cloth_back_04
+  - first:
+      4: 400042
+    second: Cloth_l_01
+  - first:
+      4: 400044
+    second: Cloth_l_02
+  - first:
+      4: 400046
+    second: Cloth_l_03
+  - first:
+      4: 400048
+    second: Cloth_l_04
+  - first:
+      4: 400050
+    second: Cloth_r_01
+  - first:
+      4: 400052
+    second: Cloth_r_02
+  - first:
+      4: 400054
+    second: Cloth_r_03
+  - first:
+      4: 400056
+    second: Cloth_r_04
+  - first:
+      4: 400058
+    second: ClothF_l_01
+  - first:
+      4: 400060
+    second: ClothF_l_02
+  - first:
+      4: 400062
+    second: ClothF_l_03
+  - first:
+      4: 400064
+    second: ClothF_l_04
+  - first:
+      4: 400066
+    second: ClothF_r_01
+  - first:
+      4: 400068
+    second: ClothF_r_02
+  - first:
+      4: 400070
+    second: ClothF_r_03
+  - first:
+      4: 400072
+    second: ClothF_r_04
+  - first:
+      4: 400074
+    second: foot_l
+  - first:
+      4: 400076
+    second: foot_r
+  - first:
+      4: 400078
+    second: hand_l
+  - first:
+      4: 400080
+    second: hand_r
+  - first:
+      4: 400082
+    second: head
+  - first:
+      4: 400084
+    second: index_01_l
+  - first:
+      4: 400086
+    second: index_01_r
+  - first:
+      4: 400088
+    second: index_02_l
+  - first:
+      4: 400090
+    second: index_02_r
+  - first:
+      4: 400092
+    second: index_03_l
+  - first:
+      4: 400094
+    second: index_03_r
+  - first:
+      4: 400096
+    second: Jiggle
+  - first:
+      4: 400098
+    second: L_BackSteeve
+  - first:
+      4: 400100
+    second: L_BindWeapon
+  - first:
+      4: 400102
+    second: L_Body
+  - first:
+      4: 400104
+    second: L_Cloth
+  - first:
+      4: 400106
+    second: L_Hair
+  - first:
+      4: 400108
+    second: L_Knot
+  - first:
+      4: 400110
+    second: L_Rope_1
+  - first:
+      4: 400112
+    second: L_Rope_2
+  - first:
+      4: 400114
+    second: lowerarm_l
+  - first:
+      4: 400116
+    second: lowerarm_r
+  - first:
+      4: 400118
+    second: lowerarm_twist_01_l
+  - first:
+      4: 400120
+    second: lowerarm_twist_01_r
+  - first:
+      4: 400122
+    second: middle_01_l
+  - first:
+      4: 400124
+    second: middle_01_r
+  - first:
+      4: 400126
+    second: middle_02_l
+  - first:
+      4: 400128
+    second: middle_02_r
+  - first:
+      4: 400130
+    second: middle_03_l
+  - first:
+      4: 400132
+    second: middle_03_r
+  - first:
+      4: 400134
+    second: neck_01
+  - first:
+      4: 400136
+    second: pelvis
+  - first:
+      4: 400138
+    second: pinky_01_l
+  - first:
+      4: 400140
+    second: pinky_01_r
+  - first:
+      4: 400142
+    second: pinky_02_l
+  - first:
+      4: 400144
+    second: pinky_02_r
+  - first:
+      4: 400146
+    second: pinky_03_l
+  - first:
+      4: 400148
+    second: pinky_03_r
+  - first:
+      4: 400150
+    second: ring_01_l
+  - first:
+      4: 400152
+    second: ring_01_r
+  - first:
+      4: 400154
+    second: ring_02_l
+  - first:
+      4: 400156
+    second: ring_02_r
+  - first:
+      4: 400158
+    second: ring_03_l
+  - first:
+      4: 400160
+    second: ring_03_r
+  - first:
+      4: 400162
+    second: root
+  - first:
+      4: 400164
+    second: RopeL_01
+  - first:
+      4: 400166
+    second: RopeL_02
+  - first:
+      4: 400168
+    second: RopeL_03
+  - first:
+      4: 400170
+    second: RopeR_01
+  - first:
+      4: 400172
+    second: RopeR_02
+  - first:
+      4: 400174
+    second: RopeR_03
+  - first:
+      4: 400176
+    second: //RootNode
+  - first:
+      4: 400178
+    second: spine_01
+  - first:
+      4: 400180
+    second: spine_02
+  - first:
+      4: 400182
+    second: spine_03
+  - first:
+      4: 400184
+    second: thigh_l
+  - first:
+      4: 400186
+    second: thigh_r
+  - first:
+      4: 400188
+    second: thigh_twist_01_l
+  - first:
+      4: 400190
+    second: thigh_twist_01_r
+  - first:
+      4: 400192
+    second: thumb_01_l
+  - first:
+      4: 400194
+    second: thumb_01_r
+  - first:
+      4: 400196
+    second: thumb_02_l
+  - first:
+      4: 400198
+    second: thumb_02_r
+  - first:
+      4: 400200
+    second: thumb_03_l
+  - first:
+      4: 400202
+    second: thumb_03_r
+  - first:
+      4: 400204
+    second: Trouser_l_01
+  - first:
+      4: 400206
+    second: Trouser_l_02
+  - first:
+      4: 400208
+    second: Trouser_l_03
+  - first:
+      4: 400210
+    second: Trouser_r_01
+  - first:
+      4: 400212
+    second: Trouser_r_02
+  - first:
+      4: 400214
+    second: Trouser_r_03
+  - first:
+      4: 400216
+    second: upperarm_l
+  - first:
+      4: 400218
+    second: upperarm_r
+  - first:
+      4: 400220
+    second: upperarm_twist_01_l
+  - first:
+      4: 400222
+    second: upperarm_twist_01_r
+  - first:
+      4: 400224
+    second: Weapon_R
+  - first:
+      43: 4300000
+    second: L_Hair
+  - first:
+      43: 4300002
+    second: L_Rope_1
+  - first:
+      43: 4300004
+    second: L_Rope_2
+  - first:
+      43: 4300006
+    second: L_Knot
+  - first:
+      43: 4300008
+    second: L_BindWeapon
+  - first:
+      43: 4300010
+    second: L_BackSteeve
+  - first:
+      43: 4300012
+    second: L_Cloth
+  - first:
+      43: 4300014
+    second: L_Body
+  - first:
+      74: 7400000
+    second: Attack_01
+  - first:
+      74: 7400002
+    second: Attack_02
+  - first:
+      74: 7400004
+    second: Attack_03
+  - first:
+      74: 7400006
+    second: Attack_04
+  - first:
+      74: 7400008
+    second: Attack_05
+  - first:
+      74: 7400010
+    second: Attack_06
+  - first:
+      74: 7400012
+    second: Attack_07
+  - first:
+      74: 7400014
+    second: Attack_08
+  - first:
+      74: 7400016
+    second: Crouch
+  - first:
+      74: 7400018
+    second: Crouch_move_F
+  - first:
+      74: 7400020
+    second: Crouch_move_L
+  - first:
+      74: 7400022
+    second: Crouch_move_R
+  - first:
+      74: 7400024
+    second: Dame_01
+  - first:
+      74: 7400026
+    second: Dame_02
+  - first:
+      74: 7400028
+    second: Death_01
+  - first:
+      74: 7400030
+    second: Death_02
+  - first:
+      74: 7400032
+    second: Getup_Back
+  - first:
+      74: 7400034
+    second: Getup_Front
+  - first:
+      74: 7400036
+    second: Idle_Weapon
+  - first:
+      74: 7400038
+    second: Idle_nonWeapon
+  - first:
+      74: 7400040
+    second: Idle_Sit
+  - first:
+      74: 7400042
+    second: Jump_End
+  - first:
+      74: 7400044
+    second: Jump_Loop
+  - first:
+      74: 7400046
+    second: Jump_Start
+  - first:
+      74: 7400048
+    second: Run_Back
+  - first:
+      74: 7400050
+    second: Run_Left
+  - first:
+      74: 7400052
+    second: Run_nonWeapon
+  - first:
+      74: 7400054
+    second: Run_Right
+  - first:
+      74: 7400056
+    second: Run_Weapon
+  - first:
+      74: 7400058
+    second: ShortAttack_01
+  - first:
+      74: 7400060
+    second: ShortAttack_02
+  - first:
+      74: 7400062
+    second: ShortAttack_03
+  - first:
+      74: 7400064
+    second: ShortAttack_04
+  - first:
+      74: 7400066
+    second: ShortAttack_05
+  - first:
+      74: 7400068
+    second: ShortAttack_06
+  - first:
+      74: 7400070
+    second: ShortAttack_07
+  - first:
+      74: 7400072
+    second: ShortAttack_08
+  - first:
+      74: 7400074
+    second: Sit
+  - first:
+      74: 7400076
+    second: Sit_Idle
+  - first:
+      74: 7400078
+    second: Strafe_B
+  - first:
+      74: 7400080
+    second: Strafe_F
+  - first:
+      74: 7400082
+    second: Strafe_L
+  - first:
+      74: 7400084
+    second: Strafe_R
+  - first:
+      74: 7400086
+    second: Walk_nonWeapon
+  - first:
+      74: 7400088
+    second: Wak_Weapon
+  - first:
+      74: 7400090
+    second: T_pose
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: L_BackSteeve
+  - first:
+      137: 13700002
+    second: L_BindWeapon
+  - first:
+      137: 13700004
+    second: L_Body
+  - first:
+      137: 13700006
+    second: L_Cloth
+  - first:
+      137: 13700008
+    second: L_Hair
+  - first:
+      137: 13700010
+    second: L_Knot
+  - first:
+      137: 13700012
+    second: L_Rope_1
+  - first:
+      137: 13700014
+    second: L_Rope_2
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Arashi
+    second: {fileID: 2100000, guid: d172b4d2e7fbfde4c97147a555f3bc09, type: 2}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: <Root Transform>
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Attack_01' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'spine_02' has translation animation that will
-      be discarded.\n\t'spine_03' has translation animation that will be discarded.\n\t'spine_03'
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'spine_02' has translation animation that
+      will be discarded.\n\t'spine_03' has translation animation that will be discarded.\n\t'spine_03'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'pinky_01_r'
       has translation animation that will be discarded.\n\nClip 'Attack_02' has import
       animation warnings that might lower retargeting quality:\nNote: Activate translation
       DOF on avatar to improve retargeting quality.\n\t'spine_02' has translation
       animation that will be discarded.\n\t'spine_03' has translation animation that
       will be discarded.\n\t'spine_03' is inbetween humanoid transforms and has rotation
-      animation that will be discarded.\n\nClip 'Attack_03' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'spine_02' has translation animation that
-      will be discarded.\n\t'spine_03' has translation animation that will be discarded.\n\t'spine_03'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'pinky_01_r'
-      has translation animation that will be discarded.\n\t'calf_l' has translation
-      animation that will be discarded.\n\nClip 'Attack_04' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'spine_02' has translation animation that
-      will be discarded.\n\t'spine_03' has translation animation that will be discarded.\n\t'spine_03'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'pinky_01_r'
-      has translation animation that will be discarded.\n\t'calf_r' has translation
-      animation that will be discarded.\n\nClip 'Attack_05' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'spine_02' has translation animation that
-      will be discarded.\n\t'spine_03' has translation animation that will be discarded.\n\t'spine_03'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'pinky_01_r'
-      has translation animation that will be discarded.\n\nClip 'Attack_06' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      animation that will be discarded.\n\nClip 'Attack_03' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
       DOF on avatar to improve retargeting quality.\n\t'spine_02' has translation
       animation that will be discarded.\n\t'spine_03' has translation animation that
       will be discarded.\n\t'spine_03' is inbetween humanoid transforms and has rotation
-      animation that will be discarded.\n\nClip 'Attack_07' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      animation that will be discarded.\n\t'pinky_01_r' has translation animation
+      that will be discarded.\n\t'calf_l' has translation animation that will be
+      discarded.\n\nClip 'Attack_04' has import animation warnings that might lower
+      retargeting quality:\nNote: Activate translation DOF on avatar to improve retargeting
+      quality.\n\t'spine_02' has translation animation that will be discarded.\n\t'spine_03'
+      has translation animation that will be discarded.\n\t'spine_03' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'pinky_01_r'
+      has translation animation that will be discarded.\n\t'calf_r' has translation
+      animation that will be discarded.\n\nClip 'Attack_05' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'spine_02' has translation
+      animation that will be discarded.\n\t'spine_03' has translation animation that
+      will be discarded.\n\t'spine_03' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'pinky_01_r' has translation animation
+      that will be discarded.\n\nClip 'Attack_06' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'spine_02' has translation animation that
       will be discarded.\n\t'spine_03' has translation animation that will be discarded.\n\t'spine_03'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'Attack_08' has import animation warnings that might lower retargeting quality:\nNote:
+      'Attack_07' has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02'
       has translation animation that will be discarded.\n\t'spine_03' has translation
+      animation that will be discarded.\n\t'spine_03' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'Attack_08' has
+      import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'spine_02' has
+      translation animation that will be discarded.\n\t'spine_03' has translation
       animation that will be discarded.\n\t'spine_03' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n\nClip 'Crouch' has import
       animation warnings that might lower retargeting quality:\nNote: Activate translation
       DOF on avatar to improve retargeting quality.\n\t'spine_03' is inbetween humanoid
       transforms and has rotation animation that will be discarded.\n\nClip 'Crouch_move_F'
-      has import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'spine_03' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'Crouch_move_L' has import animation warnings that might lower retargeting quality:\nNote:
+      has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_03'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'Crouch_move_R' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_03'
+      'Crouch_move_L' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_03'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'Crouch_move_R' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_03'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
       'Dame_02' has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02'
@@ -370,12 +957,12 @@ ModelImporter:
       will be discarded.\n\t'spine_03' is inbetween humanoid transforms and has rotation
       animation that will be discarded.\n\t'pinky_01_r' has translation animation
       that will be discarded.\n\nClip 'Death_02' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'spine_03' is inbetween humanoid transforms
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'spine_03' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n\nClip 'Getup_Back' has
       import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'spine_03' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      translation DOF on avatar to improve retargeting quality.\n\t'spine_03' is
+      inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
       'Getup_Front' has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_03'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
@@ -384,9 +971,9 @@ ModelImporter:
       has translation animation that will be discarded.\n\t'spine_03' has translation
       animation that will be discarded.\n\t'spine_03' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n\nClip 'Idle_nonWeapon'
-      has import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'spine_03' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_03'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
       'Idle_Sit' has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_03'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'pinky_01_r'
@@ -394,87 +981,92 @@ ModelImporter:
       animation warnings that might lower retargeting quality:\nNote: Activate translation
       DOF on avatar to improve retargeting quality.\n\t'spine_03' is inbetween humanoid
       transforms and has rotation animation that will be discarded.\n\nClip 'Jump_Start'
-      has import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'spine_02' has
-      translation animation that will be discarded.\n\t'spine_03' has translation
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02'
+      has translation animation that will be discarded.\n\t'spine_03' has translation
       animation that will be discarded.\n\t'spine_03' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n\nClip 'Run_Back' has import
       animation warnings that might lower retargeting quality:\nNote: Activate translation
       DOF on avatar to improve retargeting quality.\n\t'spine_03' is inbetween humanoid
       transforms and has rotation animation that will be discarded.\n\nClip 'Run_Left'
-      has import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'spine_03' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'Run_nonWeapon' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_03'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'Run_nonWeapon' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02'
       has translation animation that will be discarded.\n\t'spine_03' has translation
       animation that will be discarded.\n\t'spine_03' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\nClip 'Run_Right' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'spine_03' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n\nClip 'ShortAttack_01'
-      has import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'spine_02' has
-      translation animation that will be discarded.\n\t'spine_03' has translation
-      animation that will be discarded.\n\t'spine_03' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\t'pinky_01_r' has translation
-      animation that will be discarded.\n\nClip 'ShortAttack_02' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation DOF
-      on avatar to improve retargeting quality.\n\t'spine_02' has translation animation
-      that will be discarded.\n\t'spine_03' has translation animation that will be
-      discarded.\n\t'spine_03' is inbetween humanoid transforms and has rotation animation
-      that will be discarded.\n\nClip 'ShortAttack_03' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'spine_02' has translation animation that
-      will be discarded.\n\t'spine_03' has translation animation that will be discarded.\n\t'spine_03'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'pinky_01_r'
-      has translation animation that will be discarded.\n\t'calf_l' has translation
-      animation that will be discarded.\n\nClip 'ShortAttack_04' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation DOF
-      on avatar to improve retargeting quality.\n\t'spine_02' has translation animation
-      that will be discarded.\n\t'spine_03' has translation animation that will be
-      discarded.\n\t'spine_03' is inbetween humanoid transforms and has rotation animation
-      that will be discarded.\n\t'pinky_01_r' has translation animation that will
-      be discarded.\n\t'calf_r' has translation animation that will be discarded.\n\nClip
-      'ShortAttack_05' has import animation warnings that might lower retargeting
+      and has rotation animation that will be discarded.\n\nClip 'Run_Right' has
+      import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'spine_03' is
+      inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'ShortAttack_01' has import animation warnings that might lower retargeting
       quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02'
       has translation animation that will be discarded.\n\t'spine_03' has translation
       animation that will be discarded.\n\t'spine_03' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n\t'pinky_01_r' has translation
-      animation that will be discarded.\n\nClip 'ShortAttack_06' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation DOF
-      on avatar to improve retargeting quality.\n\t'spine_02' has translation animation
-      that will be discarded.\n\t'spine_03' has translation animation that will be
-      discarded.\n\t'spine_03' is inbetween humanoid transforms and has rotation animation
-      that will be discarded.\n\nClip 'ShortAttack_07' has import animation warnings
+      animation that will be discarded.\n\nClip 'ShortAttack_02' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'spine_02' has translation
+      animation that will be discarded.\n\t'spine_03' has translation animation that
+      will be discarded.\n\t'spine_03' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\nClip 'ShortAttack_03' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'spine_02' has translation
+      animation that will be discarded.\n\t'spine_03' has translation animation that
+      will be discarded.\n\t'spine_03' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'pinky_01_r' has translation animation
+      that will be discarded.\n\t'calf_l' has translation animation that will be
+      discarded.\n\nClip 'ShortAttack_04' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'spine_02' has translation animation that will be discarded.\n\t'spine_03'
+      has translation animation that will be discarded.\n\t'spine_03' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'pinky_01_r'
+      has translation animation that will be discarded.\n\t'calf_r' has translation
+      animation that will be discarded.\n\nClip 'ShortAttack_05' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'spine_02' has translation
+      animation that will be discarded.\n\t'spine_03' has translation animation that
+      will be discarded.\n\t'spine_03' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'pinky_01_r' has translation animation
+      that will be discarded.\n\nClip 'ShortAttack_06' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'spine_02' has translation animation that
       will be discarded.\n\t'spine_03' has translation animation that will be discarded.\n\t'spine_03'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'ShortAttack_08' has import animation warnings that might lower retargeting
+      'ShortAttack_07' has import animation warnings that might lower retargeting
       quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02'
+      has translation animation that will be discarded.\n\t'spine_03' has translation
+      animation that will be discarded.\n\t'spine_03' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'ShortAttack_08'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02'
       has translation animation that will be discarded.\n\t'spine_03' has translation
       animation that will be discarded.\n\t'spine_03' is inbetween humanoid transforms
       and has rotation animation that will be discarded.\n\nClip 'Sit' has import
       animation warnings that might lower retargeting quality:\nNote: Activate translation
       DOF on avatar to improve retargeting quality.\n\t'spine_03' is inbetween humanoid
       transforms and has rotation animation that will be discarded.\n\nClip 'Sit_Idle'
-      has import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'spine_03' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\t'pinky_01_r'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_03'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'pinky_01_r'
       has translation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Attack_01
       takeName: Attack_01
+      internalID: 0
       firstFrame: 0
       lastFrame: 24
       wrapMode: 0
@@ -729,6 +1321,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack_02
       takeName: Attack_02
+      internalID: 0
       firstFrame: 0
       lastFrame: 24
       wrapMode: 0
@@ -983,6 +1576,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack_03
       takeName: Attack_03
+      internalID: 0
       firstFrame: 0
       lastFrame: 24
       wrapMode: 0
@@ -1237,6 +1831,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack_04
       takeName: Attack_04
+      internalID: 0
       firstFrame: 0
       lastFrame: 32
       wrapMode: 0
@@ -1491,6 +2086,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack_05
       takeName: Attack_05
+      internalID: 0
       firstFrame: 0
       lastFrame: 38
       wrapMode: 0
@@ -1745,6 +2341,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack_06
       takeName: Attack_06
+      internalID: 0
       firstFrame: 0
       lastFrame: 48
       wrapMode: 0
@@ -1999,6 +2596,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack_07
       takeName: Attack_07
+      internalID: 0
       firstFrame: 0
       lastFrame: 32
       wrapMode: 0
@@ -2253,6 +2851,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack_08
       takeName: Attack_08
+      internalID: 0
       firstFrame: 0
       lastFrame: 32
       wrapMode: 0
@@ -2507,6 +3106,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Crouch
       takeName: Crouch
+      internalID: 0
       firstFrame: 0
       lastFrame: 80
       wrapMode: 0
@@ -2761,6 +3361,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Crouch_move_F
       takeName: Crouch_move_F
+      internalID: 0
       firstFrame: 0
       lastFrame: 26
       wrapMode: 0
@@ -3015,6 +3616,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Crouch_move_L
       takeName: Crouch_move_L
+      internalID: 0
       firstFrame: 0
       lastFrame: 26
       wrapMode: 0
@@ -3269,6 +3871,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Crouch_move_R
       takeName: Crouch_move_R
+      internalID: 0
       firstFrame: 0
       lastFrame: 26
       wrapMode: 0
@@ -3523,6 +4126,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Dame_01
       takeName: Dame_01
+      internalID: 0
       firstFrame: 0
       lastFrame: 32
       wrapMode: 0
@@ -3777,6 +4381,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Dame_02
       takeName: Dame_02
+      internalID: 0
       firstFrame: 0
       lastFrame: 32
       wrapMode: 0
@@ -4031,6 +4636,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Death_01
       takeName: Death_01
+      internalID: 0
       firstFrame: 0
       lastFrame: 96
       wrapMode: 0
@@ -4285,6 +4891,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Death_02
       takeName: Death_02
+      internalID: 0
       firstFrame: 1
       lastFrame: 100
       wrapMode: 0
@@ -4539,6 +5146,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Getup_Back
       takeName: Getup_Back
+      internalID: 0
       firstFrame: 0
       lastFrame: 65
       wrapMode: 0
@@ -4793,6 +5401,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Getup_Front
       takeName: Getup_Front
+      internalID: 0
       firstFrame: 0
       lastFrame: 49
       wrapMode: 0
@@ -5047,6 +5656,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle_Weapon
       takeName: Idle_Weapon
+      internalID: 0
       firstFrame: 0
       lastFrame: 480
       wrapMode: 0
@@ -5301,6 +5911,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle_nonWeapon
       takeName: Idle_nonWeapon
+      internalID: 0
       firstFrame: 0
       lastFrame: 320
       wrapMode: 0
@@ -5555,6 +6166,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle_Sit
       takeName: Idle_Sit
+      internalID: 0
       firstFrame: 0
       lastFrame: 42
       wrapMode: 0
@@ -5809,6 +6421,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Jump_End
       takeName: Jump_End
+      internalID: 0
       firstFrame: 0
       lastFrame: 6
       wrapMode: 0
@@ -6063,6 +6676,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Jump_Loop
       takeName: Jump_Loop
+      internalID: 0
       firstFrame: 0
       lastFrame: 16
       wrapMode: 0
@@ -6317,6 +6931,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Jump_Start
       takeName: Jump_Start
+      internalID: 0
       firstFrame: 0
       lastFrame: 11
       wrapMode: 0
@@ -6571,6 +7186,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Run_Back
       takeName: Run_Back
+      internalID: 0
       firstFrame: 0
       lastFrame: 14
       wrapMode: 0
@@ -6825,6 +7441,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Run_Left
       takeName: Run_Left
+      internalID: 0
       firstFrame: 0
       lastFrame: 18
       wrapMode: 0
@@ -7079,6 +7696,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Run_nonWeapon
       takeName: Run_nonWeapon
+      internalID: 0
       firstFrame: 0
       lastFrame: 26
       wrapMode: 0
@@ -7333,6 +7951,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Run_Right
       takeName: Run_Right
+      internalID: 0
       firstFrame: 0
       lastFrame: 18
       wrapMode: 0
@@ -7587,6 +8206,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Run_Weapon
       takeName: Run_Weapon
+      internalID: 0
       firstFrame: 0
       lastFrame: 26
       wrapMode: 0
@@ -7607,7 +8227,21 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: walkSound
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5208333
+        functionName: walkSound
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -7841,6 +8475,7 @@ ModelImporter:
     - serializedVersion: 16
       name: ShortAttack_01
       takeName: ShortAttack_01
+      internalID: 0
       firstFrame: 3
       lastFrame: 19
       wrapMode: 0
@@ -8095,6 +8730,7 @@ ModelImporter:
     - serializedVersion: 16
       name: ShortAttack_02
       takeName: ShortAttack_02
+      internalID: 0
       firstFrame: 3
       lastFrame: 19
       wrapMode: 0
@@ -8349,6 +8985,7 @@ ModelImporter:
     - serializedVersion: 16
       name: ShortAttack_03
       takeName: ShortAttack_03
+      internalID: 0
       firstFrame: 3
       lastFrame: 19
       wrapMode: 0
@@ -8603,6 +9240,7 @@ ModelImporter:
     - serializedVersion: 16
       name: ShortAttack_04
       takeName: ShortAttack_04
+      internalID: 0
       firstFrame: 4
       lastFrame: 27
       wrapMode: 0
@@ -8857,6 +9495,7 @@ ModelImporter:
     - serializedVersion: 16
       name: ShortAttack_05
       takeName: ShortAttack_05
+      internalID: 0
       firstFrame: 3
       lastFrame: 34
       wrapMode: 0
@@ -9111,6 +9750,7 @@ ModelImporter:
     - serializedVersion: 16
       name: ShortAttack_06
       takeName: ShortAttack_06
+      internalID: 0
       firstFrame: 3
       lastFrame: 30
       wrapMode: 0
@@ -9365,6 +10005,7 @@ ModelImporter:
     - serializedVersion: 16
       name: ShortAttack_07
       takeName: ShortAttack_07
+      internalID: 0
       firstFrame: 3
       lastFrame: 22
       wrapMode: 0
@@ -9619,6 +10260,7 @@ ModelImporter:
     - serializedVersion: 16
       name: ShortAttack_08
       takeName: ShortAttack_08
+      internalID: 0
       firstFrame: 3
       lastFrame: 22
       wrapMode: 0
@@ -9873,6 +10515,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Sit
       takeName: Sit
+      internalID: 0
       firstFrame: 0
       lastFrame: 80
       wrapMode: 0
@@ -10127,6 +10770,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Sit_Idle
       takeName: Sit_Idle
+      internalID: 0
       firstFrame: 0
       lastFrame: 42
       wrapMode: 0
@@ -10381,6 +11025,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Strafe_B
       takeName: Strafe_B
+      internalID: 0
       firstFrame: 0
       lastFrame: 26
       wrapMode: 0
@@ -10635,6 +11280,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Strafe_F
       takeName: Strafe_F
+      internalID: 0
       firstFrame: -1
       lastFrame: 25
       wrapMode: 0
@@ -10889,6 +11535,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Strafe_L
       takeName: Strafe_L
+      internalID: 0
       firstFrame: 0
       lastFrame: 26
       wrapMode: 0
@@ -11143,6 +11790,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Strafe_R
       takeName: Strafe_R
+      internalID: 0
       firstFrame: -1
       lastFrame: 25
       wrapMode: 0
@@ -11397,6 +12045,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Walk_nonWeapon
       takeName: Walk_nonWeapon
+      internalID: 0
       firstFrame: 0
       lastFrame: 26
       wrapMode: 0
@@ -11651,6 +12300,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Wak_Weapon
       takeName: Wak_Weapon
+      internalID: 0
       firstFrame: 0
       lastFrame: 26
       wrapMode: 0
@@ -11905,6 +12555,7 @@ ModelImporter:
     - serializedVersion: 16
       name: T_pose
       takeName: T_pose
+      internalID: 0
       firstFrame: 0
       lastFrame: 1
       wrapMode: 0
@@ -12162,13 +12813,24 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -12178,10 +12840,14 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human:
     - boneName: pelvis
       humanName: Hips
@@ -13164,14 +13830,16 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

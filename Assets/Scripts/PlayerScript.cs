@@ -23,11 +23,12 @@ public class PlayerScript : MonoBehaviour
         LightAttk,
         Stab,
         Block,              // 格挡 手柄待做
+        Dodge_Back,         // 闪避 手柄待做
     }
 
     public Transform weapon;
 
-    Animator animator;
+    public Animator animator;
     CharacterController character;
 
     // 参数
@@ -58,6 +59,11 @@ public class PlayerScript : MonoBehaviour
         if (!character.isGrounded)
         {
             character.Move(Vector3.down * 10f);        // 10.0f代表重力
+        }
+
+        if(getCurrentAnimatorName() == "Dodge_Back")
+        {
+            character.Move(transform.forward * -runSpeed * getFpsXiShu());
         }
     }
 
@@ -126,13 +132,16 @@ public class PlayerScript : MonoBehaviour
 
             case PlayerBehavior.LightAttk:
                 {
-                    AudioScript.getInstance().playSound("Audios/atk");
+                    AudioScript.getInstance().playSound("Audios/huidao");
                     animator.Play("LightAttk" + playerBehaviorParam.int_1);
+                    EnemyPig.s_instance.setState(EnemyScript.EnemyState.GetHit);
+
                     break;
                 }
 
             case PlayerBehavior.Stab:
                 {
+                    AudioScript.getInstance().playSound("Audios/atk");
                     animator.Play("Stab" + playerBehaviorParam.int_1);
                     break;
                 }
@@ -140,6 +149,12 @@ public class PlayerScript : MonoBehaviour
             case PlayerBehavior.Block:
                 {
                     animator.Play("Block_GetHit_Right");
+                    break;
+                }
+
+            case PlayerBehavior.Dodge_Back:
+                {
+                    animator.Play("Dodge_Back");
                     break;
                 }
         }
@@ -164,5 +179,19 @@ public class PlayerScript : MonoBehaviour
     float getFpsXiShu()
     {
         return Time.deltaTime / (1f / 60f);
+    }
+
+    public bool checkIsCanAttack(string curActionName)
+    {
+        List<string> list = new List<string>() { "StandIdle", "WalkForward", "WalkForward_Stop", "Run_Weapon", "RunForward", "RunForward_Stop"};
+        for (int i = 0; i < list.Count; i++)
+        {
+            if(list[i] == curActionName)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

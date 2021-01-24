@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class PlayerBehaviorKeyboard : MonoBehaviour
 {
+    PlayerScript playerScript = null;
+
     void Start()
     {
-        
+        playerScript = PlayerScript.s_instance;
     }
     
     void Update()
     {
-        if(PlayerScript.s_instance == null)
+        if(playerScript == null)
         {
             return;
         }
@@ -44,126 +46,140 @@ public class PlayerBehaviorKeyboard : MonoBehaviour
 
                 if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
                 {
-                    PlayerScript.s_instance.playerBehaviorParam.float_1 = -45 + cameraAngle_y;
-                    PlayerScript.s_instance.actionInput(PlayerScript.s_instance.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run);
+                    playerScript.playerBehaviorParam.float_1 = -45 + cameraAngle_y;
+                    playerScript.actionInput(playerScript.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run);
                 }
                 else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
                 {
-                    PlayerScript.s_instance.playerBehaviorParam.float_1 = 45 + cameraAngle_y;
-                    PlayerScript.s_instance.actionInput(PlayerScript.s_instance.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run);
+                    playerScript.playerBehaviorParam.float_1 = 45 + cameraAngle_y;
+                    playerScript.actionInput(playerScript.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run);
                 }
                 else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
                 {
-                    PlayerScript.s_instance.playerBehaviorParam.float_1 = -135 + cameraAngle_y;
-                    PlayerScript.s_instance.actionInput(PlayerScript.s_instance.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run);
+                    playerScript.playerBehaviorParam.float_1 = -135 + cameraAngle_y;
+                    playerScript.actionInput(playerScript.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run);
                 }
                 else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
                 {
-                    PlayerScript.s_instance.playerBehaviorParam.float_1 = 135 + cameraAngle_y;
-                    PlayerScript.s_instance.actionInput(PlayerScript.s_instance.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run);
+                    playerScript.playerBehaviorParam.float_1 = 135 + cameraAngle_y;
+                    playerScript.actionInput(playerScript.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run);
                 }
                 else if (Input.GetKey(KeyCode.W))
                 {
-                    PlayerScript.s_instance.playerBehaviorParam.float_1 = 0 + cameraAngle_y;
-                    PlayerScript.s_instance.actionInput(PlayerScript.s_instance.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run);
+                    playerScript.playerBehaviorParam.float_1 = 0 + cameraAngle_y;
+                    playerScript.actionInput(playerScript.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run);
                 }
                 else if (Input.GetKey(KeyCode.A))
                 {
-                    PlayerScript.s_instance.playerBehaviorParam.float_1 = -90 + cameraAngle_y;
-                    PlayerScript.s_instance.actionInput(PlayerScript.s_instance.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run);
+                    playerScript.playerBehaviorParam.float_1 = -90 + cameraAngle_y;
+                    playerScript.actionInput(playerScript.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run);
                 }
                 else if (Input.GetKey(KeyCode.S))
                 {
-                    PlayerScript.s_instance.playerBehaviorParam.float_1 = -180 + cameraAngle_y;
-                    PlayerScript.s_instance.actionInput(PlayerScript.s_instance.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run);
+                    playerScript.playerBehaviorParam.float_1 = -180 + cameraAngle_y;
+                    playerScript.actionInput(playerScript.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run);
                 }
                 else if (Input.GetKey(KeyCode.D))
                 {
-                    PlayerScript.s_instance.playerBehaviorParam.float_1 = 90 + cameraAngle_y;
-                    PlayerScript.s_instance.actionInput(PlayerScript.s_instance.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run);
+                    playerScript.playerBehaviorParam.float_1 = 90 + cameraAngle_y;
+                    playerScript.actionInput(playerScript.moveIsWalk ? PlayerScript.PlayerBehavior.Walk : PlayerScript.PlayerBehavior.Run);
                 }
 
                 if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
                 {
-                    PlayerScript.s_instance.actionInput(PlayerScript.s_instance.moveIsWalk ? PlayerScript.PlayerBehavior.StopWalk : PlayerScript.PlayerBehavior.StopRun);
+                    playerScript.actionInput(playerScript.moveIsWalk ? PlayerScript.PlayerBehavior.StopWalk : PlayerScript.PlayerBehavior.StopRun);
                 }
 
                 // 走路/跑步 切换
                 if (Input.GetKeyUp(KeyCode.LeftControl))
                 {
-                    PlayerScript.s_instance.moveIsWalk = !PlayerScript.s_instance.moveIsWalk;
+                    playerScript.moveIsWalk = !playerScript.moveIsWalk;
+                }
+                // 闪避
+                else if (Input.GetKeyUp(KeyCode.Space))
+                {
+                    playerScript.actionInput(PlayerScript.PlayerBehavior.Dodge_Back);
                 }
             }
         }
 
         // 鼠标
         {
+            long actionEndTime = ActionEventFrame.s_instance.actionEndTime;
+            long timeCha = CommonUtil.getTimeStamp_Millisecond() - actionEndTime;
+            string actionEndName = ActionEventFrame.s_instance.actionEndName;
+            string currentAnimatorName = playerScript.getCurrentAnimatorName();
+
             bool isMouseButton0 = Input.GetMouseButtonDown(0);
             bool isMouseButton1 = Input.GetMouseButtonDown(1);
             bool isMouseButton2 = Input.GetMouseButtonDown(2);
-            if (isMouseButton0 || isMouseButton1)
-            {
-                string currentAnimatorName = PlayerScript.s_instance.getCurrentAnimatorName();
 
-                if (currentAnimatorName == "LightAttk1")
+            // 左键
+            if (isMouseButton0)
+            {
+                float comboMaxDur = 500;
+                if (playerScript.checkIsCanAttack(currentAnimatorName))
                 {
-                    if (ActionEventFrame.s_instance.LightAttk1 == ActionEventFrame.ComboState.WaitInput)
+                    if (actionEndName == "LightAttk1")
                     {
-                        ActionEventFrame.s_instance.LightAttk1 = isMouseButton0 ? ActionEventFrame.ComboState.InputSuccess : ActionEventFrame.ComboState.InputFail;
+                        playerScript.playerBehaviorParam.int_1 = timeCha < comboMaxDur ? 2 : 1;
+                        playerScript.actionInput(PlayerScript.PlayerBehavior.LightAttk);
                     }
-                }
-                else if (currentAnimatorName == "LightAttk2")
-                {
-                    if (ActionEventFrame.s_instance.LightAttk2 == ActionEventFrame.ComboState.WaitInput)
+                    else if (actionEndName == "LightAttk2")
                     {
-                        ActionEventFrame.s_instance.LightAttk2 = isMouseButton0 ? ActionEventFrame.ComboState.InputSuccess : ActionEventFrame.ComboState.InputFail;
+                        playerScript.playerBehaviorParam.int_1 = timeCha < comboMaxDur ? 3 : 1;
+                        playerScript.actionInput(PlayerScript.PlayerBehavior.LightAttk);
                     }
-                }
-                else if (currentAnimatorName == "LightAttk3")
-                {
-                    if (ActionEventFrame.s_instance.LightAttk3 == ActionEventFrame.ComboState.WaitInput)
+                    else if (actionEndName == "LightAttk3")
                     {
-                        ActionEventFrame.s_instance.LightAttk3 = isMouseButton0 ? ActionEventFrame.ComboState.InputSuccess : ActionEventFrame.ComboState.InputFail;
+                        playerScript.playerBehaviorParam.int_1 = timeCha < comboMaxDur ? 4 : 1;
+                        playerScript.actionInput(PlayerScript.PlayerBehavior.LightAttk);
                     }
-                }
-                else if (currentAnimatorName == "LightAttk4")
-                {
-                }
-                else if (currentAnimatorName == "Stab1")
-                {
-                    if (ActionEventFrame.s_instance.Stab1 == ActionEventFrame.ComboState.WaitInput)
+                    else if (actionEndName == "LightAttk4")
                     {
-                        ActionEventFrame.s_instance.Stab1 = isMouseButton1 ? ActionEventFrame.ComboState.InputSuccess : ActionEventFrame.ComboState.InputFail;
+                        playerScript.playerBehaviorParam.int_1 = 1;
+                        playerScript.actionInput(PlayerScript.PlayerBehavior.LightAttk);
                     }
-                }
-                else if (currentAnimatorName == "Stab2")
-                {
-                    if (ActionEventFrame.s_instance.Stab2 == ActionEventFrame.ComboState.WaitInput)
+                    else
                     {
-                        ActionEventFrame.s_instance.Stab2 = isMouseButton1 ? ActionEventFrame.ComboState.InputSuccess : ActionEventFrame.ComboState.InputFail;
-                    }
-                }
-                else if (currentAnimatorName == "Stab3")
-                {
-                }
-                else
-                {
-                    if (isMouseButton0)
-                    {
-                        PlayerScript.s_instance.playerBehaviorParam.int_1 = 1;
-                        PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.LightAttk);
-                    }
-                    else if (isMouseButton1)
-                    {
-                        PlayerScript.s_instance.playerBehaviorParam.int_1 = 1;
-                        PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Stab);
+                        playerScript.playerBehaviorParam.int_1 = 1;
+                        playerScript.actionInput(PlayerScript.PlayerBehavior.LightAttk);
                     }
                 }
             }
-            // 格挡
+            // 右键
+            else if (isMouseButton1)
+            {
+                float comboMaxDur = 500;
+                if (playerScript.checkIsCanAttack(currentAnimatorName))
+                {
+                    if (actionEndName == "Stab1")
+                    {
+                        playerScript.playerBehaviorParam.int_1 = timeCha < comboMaxDur ? 2 : 1;
+                        playerScript.actionInput(PlayerScript.PlayerBehavior.Stab);
+                    }
+                    else if (actionEndName == "Stab2")
+                    {
+                        playerScript.playerBehaviorParam.int_1 = timeCha < comboMaxDur ? 3 : 1;
+                        playerScript.actionInput(PlayerScript.PlayerBehavior.Stab);
+                    }
+                    else if (actionEndName == "Stab3")
+                    {
+                        playerScript.playerBehaviorParam.int_1 = 1;
+                        playerScript.actionInput(PlayerScript.PlayerBehavior.Stab);
+                    }
+                    else
+                    {
+                        playerScript.playerBehaviorParam.int_1 = 1;
+                        playerScript.actionInput(PlayerScript.PlayerBehavior.Stab);
+                    }
+                }
+            }
+            // 鼠标滚轮
             else if(isMouseButton2)
             {
-                PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Block);
+                // 格挡
+                playerScript.actionInput(PlayerScript.PlayerBehavior.Block);
             }
         }
     }

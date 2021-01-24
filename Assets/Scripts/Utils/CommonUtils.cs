@@ -4,17 +4,56 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CommonUtil
 {
     static Material ImageGray = null;
+    static long time_start = 0;
+
+    // 13位时间戳：毫秒
+    public static long getTimeStamp_Millisecond()
+    {
+        DateTime original = new DateTime(1970, 1, 1, 0, 0, 0);
+        return (long)(DateTime.Now.ToUniversalTime() - original).TotalMilliseconds;
+    }
+
+    // 10位时间戳：秒
+    public static long getTimeStamp_Second()
+    {
+        DateTime original = new DateTime(1970, 1, 1, 0, 0, 0);
+        return (long)(DateTime.Now.ToUniversalTime() - original).TotalSeconds;
+    }
+
+    // 计时开始
+    public static void jishi_start()
+    {
+        time_start = getTimeStamp_Millisecond();
+    }
+
+    // 计时结束
+    public static long jishi_end()
+    {
+        return getTimeStamp_Millisecond() - time_start;
+    }
 
     // 格式2017/7/12 15:05:03
     public static string getCurTime()
     {
         return DateTime.Now.ToString();
+    }
+
+    public static DateTime StampToDateTime(long timeStamp)
+    {
+        timeStamp = 1606294609;
+
+        DateTime dateTimeStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+        long lTime = long.Parse(timeStamp + "0000000");
+        TimeSpan toNow = new TimeSpan(lTime);
+
+        return dateTimeStart.Add(toNow);
     }
 
     /// <summary>
@@ -33,7 +72,8 @@ public class CommonUtil
         for (int i = 0; i < s.Length; i++)
         {
             // 将得到的字符串使用十六进制类型格式。格式后的字符是小写的字母，如果使用大写（X）则格式后的字符是大写字符 
-            pwd = pwd + s[i].ToString("X2");
+            pwd = pwd + s[i].ToString("x2");        // 字母小写
+            // pwd = pwd + s[i].ToString("x2");     // 字母大写
         }
         return pwd;
     }
@@ -313,19 +353,30 @@ public class CommonUtil
 
     static public Sprite getSprite(string path)
     {
-        return Resources.Load("Sprites/" + path, typeof(Sprite)) as Sprite;
+        return Resources.Load(path, typeof(Sprite)) as Sprite;
+    }
+
+    static public Texture GetTexture(string fullPath)
+    {
+        //return AssetDatabase.LoadAssetAtPath(fullPath, typeof(Texture)) as Texture;
+        return Resources.Load(fullPath, typeof(Texture)) as Texture;
+    }
+
+    static public Material GetMaterial(string fullPath)
+    {
+        return Resources.Load(fullPath, typeof(Material)) as Material;
     }
 
     static public Vector3 TouchPosToWorldPos(Vector2 vec2)
     {
         // 相机是世界的，世界到屏幕
-        Vector3 camera = Camera.main.WorldToScreenPoint(GameObject.Find("Main Camera").transform.position);
+        Vector3 camera = Camera.main.WorldToScreenPoint(GameObject.Find("UICamera").transform.position);
         Vector3 pos = new Vector3(vec2.x, vec2.y, camera.z);
         Vector3 WorldPoint = Camera.main.ScreenToWorldPoint(pos);
         return new Vector3(WorldPoint.x, WorldPoint.y, 0);
     }
 
-    static public bool mousePosIsInContent(Vector2 vec2,Transform content)
+    static public bool mousePosIsInContent(Vector2 vec2, Transform content)
     {
         vec2 = TouchPosToWorldPos(vec2);
 
@@ -345,17 +396,24 @@ public class CommonUtil
         return false;
     }
 
-    static public bool uiPosIsInContent(Vector2 vec2, Transform content)
+    static public bool uiPosIsInContent(Vector2 vec2, Transform content, object size = null)
     {
-        float x = content.transform.localPosition.x;
-        float y = content.transform.localPosition.y;
+        float pivot_y = content.GetComponent<RectTransform>().pivot.y;
+
+        float x = content.transform.position.x;
+        float y = content.transform.position.y;
 
         float width = content.GetComponent<RectTransform>().sizeDelta.x;
         float height = content.GetComponent<RectTransform>().sizeDelta.y;
+        if (size != null)
+        {
+            width = ((Vector2)size).x;
+            height = ((Vector2)size).y;
+        }
         if ((vec2.x >= (x - width / 2)) &&
             (vec2.x <= (x + width / 2)) &&
-            (vec2.y >= (y - height / 2)) &&
-            (vec2.y <= (y + height / 2)))
+            (vec2.y >= (y - height * pivot_y)) &&
+            (vec2.y <= (y + height * (1 - pivot_y))))
         {
             return true;
         }
@@ -368,12 +426,12 @@ public class CommonUtil
         scrollView.GetComponent<ScrollRect>().enabled = enable;
     }
 
-    static public void setVisible(Transform obj , bool visible)
+    static public void setVisible(Transform obj, bool visible)
     {
-        obj.localScale = new Vector3(visible ? 1 : 0, 1,1);
+        obj.localScale = new Vector3(visible ? 1 : 0, 1, 1);
     }
 
-    static public float twoObjDistance_3D(GameObject obj1,GameObject obj2)
+    static public float twoObjDistance_3D(GameObject obj1, GameObject obj2)
     {
         return (obj1.transform.position - obj2.transform.position).magnitude;
     }
@@ -382,6 +440,14 @@ public class CommonUtil
     {
         Vector2 pos1 = new Vector2(obj1.transform.position.x, obj1.transform.position.z);
         Vector2 pos2 = new Vector2(obj2.transform.position.x, obj2.transform.position.z);
+
+        return (pos1 - pos2).magnitude;
+    }
+
+    static public float twoObjDistance_2D(Vector2 vec1, Vector2 vec2)
+    {
+        Vector2 pos1 = new Vector2(vec1.x, vec1.y);
+        Vector2 pos2 = new Vector2(vec2.x, vec2.y);
 
         return (pos1 - pos2).magnitude;
     }
@@ -397,6 +463,37 @@ public class CommonUtil
     static public float angleToRadian(float angle)
     {
         return angle * Mathf.Deg2Rad;
+    }
+
+    static public GameObject createObjFromPrefab(Transform parent, string path)
+    {
+        GameObject pre = Resources.Load(path, typeof(GameObject)) as GameObject;
+        if (pre != null)
+        {
+            return GameObject.Instantiate(pre, parent);
+        }
+
+        return null;
+    }
+
+    static public DateTime localTimeToBeiJing()
+    {
+        //return DateTime.Now;
+
+        try
+        {
+            // 手机本地时间:2016-8-8 1:47:35
+            DateTime dt = DateTime.Now;
+
+            //先转化为utc时间再转回北京时间:2016-8-8 1:47:35
+            return dt.ToUniversalTime().AddHours(8);
+        }
+        catch (Exception ex)
+        {
+
+        }
+
+        return DateTime.Now;
     }
 
 }
