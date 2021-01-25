@@ -578,11 +578,18 @@ ModelImporter:
       curves: []
       events:
       - time: 1
-        functionName: LightAttk4_End
+        functionName: LightAttk_End
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
-        intParameter: 0
+        intParameter: 4
+        messageOptions: 0
+      - time: 0.2814815
+        functionName: LightAttk_Hit
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 4
         messageOptions: 0
       transformMask:
       - path: 

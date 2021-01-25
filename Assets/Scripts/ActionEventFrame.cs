@@ -14,6 +14,7 @@ public class ActionEventFrame : MonoBehaviour
 
     public static ActionEventFrame s_instance = null;
 
+    PlayerScript playerScript = null;
     public long actionEndTime = 0;
     public string actionEndName = "";
 
@@ -22,60 +23,62 @@ public class ActionEventFrame : MonoBehaviour
         s_instance = this;
     }
 
+    void Start()
+    {
+        playerScript = PlayerScript.s_instance;
+    }
+
     public void walkSound()
     {
         AudioScript.getInstance().playSound("Audios/walk");
     }
 
-    public void fanWeaopn()
+    public void rotateWeaopn(int i)
     {
-        PlayerScript.s_instance.weapon.localScale = new Vector3(1,1,-1);
+        playerScript.weapon.localScale = new Vector3(1,1,i);
     }
 
-    public void zhengWeaopn()
+    public void LightAttk_Hit(int i)
     {
-        PlayerScript.s_instance.weapon.localScale = new Vector3(1, 1, 1);
+        if (playerScript.checkIsAttackSuccess())
+        {
+            AudioScript.getInstance().playSound("Audios/atk");
+            EnemyPig.s_instance.setState(EnemyScript.EnemyState.GetHit);
+        }
+        else
+        {
+            AudioScript.getInstance().playSound("Audios/huidao");
+        }
     }
 
-    public void LightAttk1_End()
+    public void LightAttk_End(int i)
     {
         actionEndTime = CommonUtil.getTimeStamp_Millisecond();
-        actionEndName = "LightAttk1";
+        actionEndName = "LightAttk" + i;
     }
 
-    public void LightAttk2_End()
+    public void StrongAttk_Hit(int i)
     {
-        actionEndTime = CommonUtil.getTimeStamp_Millisecond();
-        actionEndName = "LightAttk2";
+        if (playerScript.checkIsAttackSuccess())
+        {
+            AudioScript.getInstance().playSound("Audios/atk");
+            EnemyPig.s_instance.setState(EnemyScript.EnemyState.GetHit);
+        }
+        else
+        {
+            AudioScript.getInstance().playSound("Audios/huidao");
+        }
     }
 
-    public void LightAttk3_End()
+    public void StrongAttk_End(int i)
     {
         actionEndTime = CommonUtil.getTimeStamp_Millisecond();
-        actionEndName = "LightAttk3";
+        actionEndName = "StrongAttk" + i;
     }
 
-    public void LightAttk4_End()
+    public void Stab_End(int i)
     {
         actionEndTime = CommonUtil.getTimeStamp_Millisecond();
-        actionEndName = "LightAttk4";
-    }
-
-    public void Stab1_End()
-    {
-        actionEndTime = CommonUtil.getTimeStamp_Millisecond();
-        actionEndName = "Stab1";
-    }
-
-    public void Stab2_End()
-    {
-        actionEndTime = CommonUtil.getTimeStamp_Millisecond();
-        actionEndName = "Stab2";
-    }
-
-    public void Stab3_End()
-    {
-        actionEndTime = CommonUtil.getTimeStamp_Millisecond();
-        actionEndName = "Stab3";
+        actionEndName = "Stab" + i;
     }
 }

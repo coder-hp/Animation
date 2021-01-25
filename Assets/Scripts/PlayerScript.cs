@@ -23,7 +23,9 @@ public class PlayerScript : MonoBehaviour
         LightAttk,
         Stab,
         Block,              // 格挡 手柄待做
-        Dodge_Back,         // 闪避 手柄待做
+        Dodge_Back,         // 后翻滚 手柄待做
+        Dodge_Front,        // 前翻滚 手柄待做
+        StrongAttk,
     }
 
     public Transform weapon;
@@ -34,6 +36,7 @@ public class PlayerScript : MonoBehaviour
     // 参数
     float walkSpeed = 0.02f;
     float runSpeed = 0.07f;
+    float rollSpeed = 0.1f;
 
     public bool moveIsWalk = true;
     public PlayerBehaviorParam playerBehaviorParam = new PlayerBehaviorParam();
@@ -52,6 +55,8 @@ public class PlayerScript : MonoBehaviour
         //TrackGameObjScript.s_instance.setTargetObj(gameObject);
         //CameraScript.s_instance.setTarget(gameObject);
         FollowPlayer.s_instance.setTarget(gameObject);
+        
+        moveIsWalk = false;
     }
     
     void Update()
@@ -63,7 +68,11 @@ public class PlayerScript : MonoBehaviour
 
         if(getCurrentAnimatorName() == "Dodge_Back")
         {
-            character.Move(transform.forward * -runSpeed * getFpsXiShu());
+            character.Move(transform.forward * -rollSpeed * getFpsXiShu());
+        }
+        else if (getCurrentAnimatorName() == "Dodge_Front")
+        {
+            character.Move(transform.forward * rollSpeed * getFpsXiShu());
         }
     }
 
@@ -83,14 +92,14 @@ public class PlayerScript : MonoBehaviour
                     if (currentAnimatorName == "StandIdle" || currentAnimatorName == "Run_Weapon" || currentAnimatorName == "WalkForward_Stop")
                     {
                         animator.Play("WalkForward");
-                        transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
                         character.Move(transform.forward * walkSpeed * getFpsXiShu());
+                        transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
                     }
 
                     if (currentAnimatorName == "WalkForward")
                     {
-                        transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
                         character.Move(transform.forward * walkSpeed * getFpsXiShu());
+                        transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
                     }
                     break;
                 }
@@ -109,14 +118,14 @@ public class PlayerScript : MonoBehaviour
                     if (currentAnimatorName == "StandIdle" || currentAnimatorName == "WalkForward" || currentAnimatorName == "RunForward_Stop")
                     {
                         animator.Play("Run_Weapon");
-                        transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
                         character.Move(transform.forward * runSpeed * getFpsXiShu());
+                        transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
                     }
 
                     if (currentAnimatorName == "Run_Weapon")
                     {
-                        transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
                         character.Move(transform.forward * runSpeed * getFpsXiShu());
+                        transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
                     }
                     break;
                 }
@@ -132,16 +141,13 @@ public class PlayerScript : MonoBehaviour
 
             case PlayerBehavior.LightAttk:
                 {
-                    AudioScript.getInstance().playSound("Audios/huidao");
                     animator.Play("LightAttk" + playerBehaviorParam.int_1);
-                    EnemyPig.s_instance.setState(EnemyScript.EnemyState.GetHit);
 
                     break;
-                }
+                }     
 
             case PlayerBehavior.Stab:
                 {
-                    AudioScript.getInstance().playSound("Audios/atk");
                     animator.Play("Stab" + playerBehaviorParam.int_1);
                     break;
                 }
@@ -155,6 +161,18 @@ public class PlayerScript : MonoBehaviour
             case PlayerBehavior.Dodge_Back:
                 {
                     animator.Play("Dodge_Back");
+                    break;
+                }
+
+            case PlayerBehavior.Dodge_Front:
+                {
+                    animator.Play("Dodge_Front");
+                    break;
+                }
+
+            case PlayerBehavior.StrongAttk:
+                {
+                    animator.Play("StrongAttk" + playerBehaviorParam.int_1);
                     break;
                 }
         }
@@ -190,6 +208,17 @@ public class PlayerScript : MonoBehaviour
             {
                 return true;
             }
+        }
+
+        return false;
+    }
+
+    public bool checkIsAttackSuccess()
+    {
+        float distance =  CommonUtil.twoObjDistance_3D(gameObject, EnemyPig.s_instance.gameObject);
+        if(distance <= 1.4f)
+        {
+            return true;
         }
 
         return false;

@@ -95,10 +95,10 @@ public class PlayerBehaviorKeyboard : MonoBehaviour
                 {
                     playerScript.moveIsWalk = !playerScript.moveIsWalk;
                 }
-                // 闪避
+                // 翻滚
                 else if (Input.GetKeyUp(KeyCode.Space))
                 {
-                    playerScript.actionInput(PlayerScript.PlayerBehavior.Dodge_Back);
+                    playerScript.actionInput(PlayerScript.PlayerBehavior.Dodge_Front);
                 }
             }
         }
@@ -153,25 +153,30 @@ public class PlayerBehaviorKeyboard : MonoBehaviour
                 float comboMaxDur = 500;
                 if (playerScript.checkIsCanAttack(currentAnimatorName))
                 {
-                    if (actionEndName == "Stab1")
+                    if (actionEndName == "StrongAttk1")
                     {
                         playerScript.playerBehaviorParam.int_1 = timeCha < comboMaxDur ? 2 : 1;
-                        playerScript.actionInput(PlayerScript.PlayerBehavior.Stab);
+                        playerScript.actionInput(PlayerScript.PlayerBehavior.StrongAttk);
                     }
-                    else if (actionEndName == "Stab2")
+                    else if (actionEndName == "StrongAttk2")
                     {
                         playerScript.playerBehaviorParam.int_1 = timeCha < comboMaxDur ? 3 : 1;
-                        playerScript.actionInput(PlayerScript.PlayerBehavior.Stab);
+                        playerScript.actionInput(PlayerScript.PlayerBehavior.StrongAttk);
                     }
-                    else if (actionEndName == "Stab3")
+                    else if (actionEndName == "StrongAttk3")
+                    {
+                        playerScript.playerBehaviorParam.int_1 = timeCha < comboMaxDur ? 4 : 1;
+                        playerScript.actionInput(PlayerScript.PlayerBehavior.StrongAttk);
+                    }
+                    else if (actionEndName == "StrongAttk4")
                     {
                         playerScript.playerBehaviorParam.int_1 = 1;
-                        playerScript.actionInput(PlayerScript.PlayerBehavior.Stab);
+                        playerScript.actionInput(PlayerScript.PlayerBehavior.StrongAttk);
                     }
                     else
                     {
                         playerScript.playerBehaviorParam.int_1 = 1;
-                        playerScript.actionInput(PlayerScript.PlayerBehavior.Stab);
+                        playerScript.actionInput(PlayerScript.PlayerBehavior.StrongAttk);
                     }
                 }
             }
