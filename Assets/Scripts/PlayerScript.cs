@@ -29,14 +29,19 @@ public class PlayerScript : MonoBehaviour
     }
 
     public Transform weapon;
+    public Transform blood_front;
 
     public Animator animator;
     CharacterController character;
 
-    // 参数
-    float walkSpeed = 0.02f;
-    float runSpeed = 0.07f;
-    float rollSpeed = 0.1f;
+    Vector2 blood_size;
+    float fullBlood = 100;
+    float curBlood = 100;
+
+    // 可调参数
+    float walkSpeed = 1.2f;
+    float runSpeed = 4.2f;
+    float rollSpeed = 6f;
 
     public bool moveIsWalk = true;
     public PlayerBehaviorParam playerBehaviorParam = new PlayerBehaviorParam();
@@ -57,6 +62,7 @@ public class PlayerScript : MonoBehaviour
         FollowPlayer.s_instance.setTarget(gameObject);
         
         moveIsWalk = false;
+        blood_size = blood_front.GetComponent<RectTransform>().sizeDelta;
     }
     
     void Update()
@@ -68,11 +74,11 @@ public class PlayerScript : MonoBehaviour
 
         if(getCurrentAnimatorName() == "Dodge_Back")
         {
-            character.Move(transform.forward * -rollSpeed * getFpsXiShu());
+            character.Move(transform.forward * -rollSpeed * Time.deltaTime);
         }
         else if (getCurrentAnimatorName() == "Dodge_Front")
         {
-            character.Move(transform.forward * rollSpeed * getFpsXiShu());
+            character.Move(transform.forward * rollSpeed * Time.deltaTime);
         }
     }
 
@@ -92,13 +98,13 @@ public class PlayerScript : MonoBehaviour
                     if (currentAnimatorName == "StandIdle" || currentAnimatorName == "Run_Weapon" || currentAnimatorName == "WalkForward_Stop")
                     {
                         animator.Play("WalkForward");
-                        character.Move(transform.forward * walkSpeed * getFpsXiShu());
+                        character.Move(transform.forward * walkSpeed * Time.deltaTime);
                         transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
                     }
 
                     if (currentAnimatorName == "WalkForward")
                     {
-                        character.Move(transform.forward * walkSpeed * getFpsXiShu());
+                        character.Move(transform.forward * walkSpeed * Time.deltaTime);
                         transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
                     }
                     break;
@@ -118,13 +124,13 @@ public class PlayerScript : MonoBehaviour
                     if (currentAnimatorName == "StandIdle" || currentAnimatorName == "WalkForward" || currentAnimatorName == "RunForward_Stop")
                     {
                         animator.Play("Run_Weapon");
-                        character.Move(transform.forward * runSpeed * getFpsXiShu());
+                        character.Move(transform.forward * runSpeed * Time.deltaTime);
                         transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
                     }
 
                     if (currentAnimatorName == "Run_Weapon")
                     {
-                        character.Move(transform.forward * runSpeed * getFpsXiShu());
+                        character.Move(transform.forward * runSpeed * Time.deltaTime);
                         transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
                     }
                     break;
@@ -142,7 +148,6 @@ public class PlayerScript : MonoBehaviour
             case PlayerBehavior.LightAttk:
                 {
                     animator.Play("LightAttk" + playerBehaviorParam.int_1);
-
                     break;
                 }     
 
@@ -183,6 +188,25 @@ public class PlayerScript : MonoBehaviour
     {
     }
 
+    public void GetHit()
+    {
+        animator.Play("GetHit_Up",0,0);
+        changeBlood(-10);
+    }
+
+    void changeBlood(float value)
+    {
+        curBlood += value;
+        curBlood = curBlood < 0 ? 0 : curBlood;
+        curBlood = curBlood > fullBlood ? fullBlood : curBlood;
+        blood_front.GetComponent<RectTransform>().sizeDelta = new Vector2((curBlood / fullBlood) * blood_size.x,blood_size.y);
+
+        if(curBlood <= 0)
+        {
+            animator.Play("Dead1");
+        }
+    }
+
     // 获取当前播放动画名称
     public string getCurrentAnimatorName()
     {
@@ -192,11 +216,6 @@ public class PlayerScript : MonoBehaviour
         }
 
         return "";
-    }
-
-    float getFpsXiShu()
-    {
-        return Time.deltaTime / (1f / 60f);
     }
 
     public bool checkIsCanAttack(string curActionName)
@@ -221,6 +240,15 @@ public class PlayerScript : MonoBehaviour
             return true;
         }
 
+        return false;
+    }
+
+    public bool isGeDang()
+    {
+        if(getCurrentAnimatorName() == "Block_GetHit_Right")
+        {
+            return true;
+        }
         return false;
     }
 }

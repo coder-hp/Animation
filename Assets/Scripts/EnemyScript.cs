@@ -14,6 +14,11 @@ public class EnemyScript : MonoBehaviour
         Die,
     }
 
+    public Vector2 blood_size;
+    public float fullBlood = 100;
+    public float curBlood = 100;
+
+    public Transform blood_front;
     public Animator animator;
     public EnemyState enemyState = EnemyState.Idle;
 
