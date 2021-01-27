@@ -107,7 +107,7 @@ public class PlayerBehaviorKeyboard : MonoBehaviour
         {
             long actionEndTime = ActionEventFrame.s_instance.actionEndTime;
             long timeCha = CommonUtil.getTimeStamp_Millisecond() - actionEndTime;
-            string actionEndName = ActionEventFrame.s_instance.actionEndName;
+            string actionEndName = playerScript.getCurrentAnimatorName();
             string currentAnimatorName = playerScript.getCurrentAnimatorName();
 
             bool isMouseButton0 = Input.GetMouseButtonDown(0);
@@ -122,28 +122,43 @@ public class PlayerBehaviorKeyboard : MonoBehaviour
                 {
                     if (actionEndName == "LightAttk1")
                     {
-                        playerScript.playerBehaviorParam.int_1 = timeCha < comboMaxDur ? 2 : 1;
-                        playerScript.actionInput(PlayerScript.PlayerBehavior.LightAttk);
+                        //playerScript.playerBehaviorParam.int_1 = timeCha < comboMaxDur ? 2 : 1;
+                        //playerScript.actionInput(PlayerScript.PlayerBehavior.LightAttk);
+
+                        if (ActionEventFrame.s_instance.LightAttkState_list[0] == ActionEventFrame.ComboState.WaitInput)
+                        {
+                            ActionEventFrame.s_instance.LightAttkState_list[0] = isMouseButton0 ? ActionEventFrame.ComboState.InputSuccess : ActionEventFrame.ComboState.InputFail;
+                        }
                     }
                     else if (actionEndName == "LightAttk2")
                     {
-                        playerScript.playerBehaviorParam.int_1 = timeCha < comboMaxDur ? 3 : 1;
-                        playerScript.actionInput(PlayerScript.PlayerBehavior.LightAttk);
+                        //playerScript.playerBehaviorParam.int_1 = timeCha < comboMaxDur ? 3 : 1;
+                        //playerScript.actionInput(PlayerScript.PlayerBehavior.LightAttk);
+
+                        if (ActionEventFrame.s_instance.LightAttkState_list[1] == ActionEventFrame.ComboState.WaitInput)
+                        {
+                            ActionEventFrame.s_instance.LightAttkState_list[1] = isMouseButton0 ? ActionEventFrame.ComboState.InputSuccess : ActionEventFrame.ComboState.InputFail;
+                        }
                     }
                     else if (actionEndName == "LightAttk3")
                     {
-                        playerScript.playerBehaviorParam.int_1 = timeCha < comboMaxDur ? 4 : 1;
-                        playerScript.actionInput(PlayerScript.PlayerBehavior.LightAttk);
+                        //playerScript.playerBehaviorParam.int_1 = timeCha < comboMaxDur ? 4 : 1;
+                        //playerScript.actionInput(PlayerScript.PlayerBehavior.LightAttk);
+
+                        if (ActionEventFrame.s_instance.LightAttkState_list[2] == ActionEventFrame.ComboState.WaitInput)
+                        {
+                            ActionEventFrame.s_instance.LightAttkState_list[2] = isMouseButton0 ? ActionEventFrame.ComboState.InputSuccess : ActionEventFrame.ComboState.InputFail;
+                        }
                     }
                     else if (actionEndName == "LightAttk4")
                     {
-                        playerScript.playerBehaviorParam.int_1 = 1;
-                        playerScript.actionInput(PlayerScript.PlayerBehavior.LightAttk);
+                        //playerScript.playerBehaviorParam.int_1 = 1;
+                        //playerScript.actionInput(PlayerScript.PlayerBehavior.LightAttk);
                     }
                     else
                     {
-                        playerScript.playerBehaviorParam.int_1 = 1;
-                        playerScript.actionInput(PlayerScript.PlayerBehavior.LightAttk);
+                        PlayerScript.s_instance.playerBehaviorParam.int_1 = 1;
+                        PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.LightAttk);
                     }
                 }
             }

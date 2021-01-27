@@ -72,11 +72,12 @@ public class PlayerScript : MonoBehaviour
             character.Move(Vector3.down * 10f);        // 10.0f代表重力
         }
 
-        if(getCurrentAnimatorName() == "Dodge_Back")
+        string currentAnimatorName = getCurrentAnimatorName();
+        if (currentAnimatorName == "Dodge_Back")
         {
             character.Move(transform.forward * -rollSpeed * Time.deltaTime);
         }
-        else if (getCurrentAnimatorName() == "Dodge_Front")
+        else if (currentAnimatorName == "Dodge_Front")
         {
             character.Move(transform.forward * rollSpeed * Time.deltaTime);
         }
@@ -220,16 +221,18 @@ public class PlayerScript : MonoBehaviour
 
     public bool checkIsCanAttack(string curActionName)
     {
-        List<string> list = new List<string>() { "StandIdle", "WalkForward", "WalkForward_Stop", "Run_Weapon", "RunForward", "RunForward_Stop"};
-        for (int i = 0; i < list.Count; i++)
-        {
-            if(list[i] == curActionName)
-            {
-                return true;
-            }
-        }
+        //List<string> list = new List<string>() { "StandIdle", "WalkForward", "WalkForward_Stop", "Run_Weapon", "RunForward", "RunForward_Stop"};
+        //for (int i = 0; i < list.Count; i++)
+        //{
+        //    if(list[i] == curActionName)
+        //    {
+        //        return true;
+        //    }
+        //}
 
-        return false;
+        //return false;
+
+        return true;
     }
 
     public bool checkIsAttackSuccess()
