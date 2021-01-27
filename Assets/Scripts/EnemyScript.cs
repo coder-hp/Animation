@@ -12,6 +12,7 @@ public class EnemyScript : MonoBehaviour
         GetHit,
         Attack,
         Die,
+        Skill,
     }
 
     public Vector2 blood_size;

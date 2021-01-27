@@ -9,6 +9,7 @@ public class EnemyPig : EnemyScript
     PlayerScript playerScript = null;
 
     public bool isStartFight = false;
+    public GameObject skill;
 
     float restAttackTime = 2;
 
@@ -31,8 +32,11 @@ public class EnemyPig : EnemyScript
             restAttackTime -= Time.deltaTime;
             if (restAttackTime <= 0)
             {
-                restAttackTime = RandomUtil.getRandom(1,4);
-                setState(EnemyState.Attack);
+                //restAttackTime = RandomUtil.getRandom(1,4);
+                //setState(EnemyState.Attack);
+
+                restAttackTime = RandomUtil.getRandom(10, 15);
+                setState(EnemyState.Skill);
             }
         }
     }
@@ -59,6 +63,12 @@ public class EnemyPig : EnemyScript
                     animator.Play("Death");
                     break;
                 }
+
+            case EnemyState.Skill:
+                {
+                    animator.Play("Roar");
+                    break;
+                }
         }
     }
 
@@ -73,6 +83,12 @@ public class EnemyPig : EnemyScript
         {
             AudioScript.getInstance().playSound("Audios/huidao");
         }
+    }
+
+    public void Skill_Hit(int i)
+    {
+        skill.SetActive(false);
+        skill.SetActive(true);
     }
 
     public void GetHitEnd()
@@ -94,16 +110,15 @@ public class EnemyPig : EnemyScript
 
     public bool checkIsAttackSuccess()
     {
-        // 格挡
-        if(playerScript.isGeDang())
-        {
-            AudioScript.getInstance().playSound("Audios/gedang");
-            return false;
-        }
-
         float distance = CommonUtil.twoObjDistance_3D(gameObject, playerScript.gameObject);
         if (distance <= 2f)
         {
+            // 格挡
+            if (playerScript.isGeDang())
+            {
+                AudioScript.getInstance().playSound("Audios/gedang");
+                return false;
+            }
             return true;
         }
 
