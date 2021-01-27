@@ -8,12 +8,12 @@ public class FollowPlayer : MonoBehaviour
 
     float distance = 0;
     float scrollSpeed = 15;
-    float rotateSpeed = 6;
+    float rotateSpeed = 2;
 
     Transform target = null;
     Vector3 offSetPostion;          // 镜头位置偏移量
     bool isCanRotate_h = true;      // 鼠标左右滑动
-    bool isCanRotate_v = true;      // 鼠标上下滑动
+    bool isCanRotate_v = false;      // 鼠标上下滑动
 
     void Awake()
     {
