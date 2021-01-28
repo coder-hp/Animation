@@ -12,6 +12,8 @@ public class FollowPlayer : MonoBehaviour
 
     Transform target = null;
     Vector3 offSetPostion;          // 镜头位置偏移量
+
+    public bool isRotate = true;
     bool isCanRotate_h = true;      // 鼠标左右滑动
     bool isCanRotate_v = true;      // 鼠标上下滑动
 
@@ -25,8 +27,18 @@ public class FollowPlayer : MonoBehaviour
         target = _target.transform;
         offSetPostion = transform.position - target.position;
     }
-    
+
     void Update()
+    {
+        //if (target == null)
+        //{
+        //    return;
+        //}
+
+        //transform.position = offSetPostion + target.position;
+    }
+
+    public void refresh()
     {
         if (target == null)
         {
@@ -38,6 +50,16 @@ public class FollowPlayer : MonoBehaviour
 
     public void RotateView(float mouse_x, float mouse_y)
     {
+        if (!isRotate)
+        {
+            return;
+        }
+
+        if (mouse_x == 0 && mouse_y == 0)
+        {
+            return;
+        }
+
         if (isCanRotate_h)
         {
             if (mouse_x != 0)
@@ -64,7 +86,6 @@ public class FollowPlayer : MonoBehaviour
         }
 
         offSetPostion = transform.position - target.position;
-        transform.position = offSetPostion + target.position;
     }
 
     public void ScrollView(float value)

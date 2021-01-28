@@ -100,6 +100,10 @@ public class PlayerBehaviorKeyboard : MonoBehaviour
                 {
                     playerScript.actionInput(PlayerScript.PlayerBehavior.Dodge_Front);
                 }
+                else if(Input.GetKeyUp(KeyCode.LeftAlt))
+                {
+                    FollowPlayer.s_instance.isRotate = !FollowPlayer.s_instance.isRotate;
+                }
             }
         }
 

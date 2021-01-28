@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -81,6 +82,10 @@ public class PlayerScript : MonoBehaviour
         {
             character.Move(transform.forward * rollSpeed * Time.deltaTime);
         }
+
+        FollowPlayer.s_instance.refresh();
+
+        Debug.Log(Math.Round(CommonUtil.twoObjDistance_3D(gameObject,FollowPlayer.s_instance.gameObject), 2));
     }
 
     public void actionInput(PlayerBehavior playerBehavior)
@@ -134,6 +139,11 @@ public class PlayerScript : MonoBehaviour
                         character.Move(transform.forward * runSpeed * Time.deltaTime);
                         transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
                     }
+
+                    //float xx = playerBehaviorParam.float_1 - FollowPlayer.s_instance.transform.eulerAngles.y;
+                    //Debug.Log(xx);
+                    //FollowPlayer.s_instance.refresh();
+                    //FollowPlayer.s_instance.RotateView(xx > 0 ? -0.4f : 0.4f, 0);
                     break;
                 }
 
