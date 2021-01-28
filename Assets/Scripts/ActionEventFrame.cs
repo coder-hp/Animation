@@ -19,6 +19,7 @@ public class ActionEventFrame : MonoBehaviour
     public string actionEndName = "";
 
     public List<ComboState> LightAttkState_list = new List<ComboState>() { ComboState.Disable, ComboState.Disable, ComboState.Disable, ComboState.Disable };
+    public List<ComboState> StrongAttkState_list = new List<ComboState>() { ComboState.Disable, ComboState.Disable, ComboState.Disable, ComboState.Disable };
 
     void Awake()
     {
@@ -60,20 +61,13 @@ public class ActionEventFrame : MonoBehaviour
 
     public void LightAttk_End(int i)
     {
-        //actionEndTime = CommonUtil.getTimeStamp_Millisecond();
-        //actionEndName = "LightAttk" + i;
-
         if (LightAttkState_list[i - 1] == ComboState.InputSuccess)
         {
-            PlayerScript.s_instance.playerBehaviorParam.int_1 = i + 1;
-            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.LightAttk);
-
-            //PlayerScript.s_instance.animator.SetInteger("Action", 100 + i + 1);
+            PlayerScript.s_instance.LightAttk(i + 1);
         }
         else
         {
-            PlayerScript.s_instance.animator.SetInteger("Action", 0);
-            //PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Idle);
+            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Idle);
         }
         LightAttkState_list[i - 1] = ComboState.Disable;
     }
@@ -91,10 +85,22 @@ public class ActionEventFrame : MonoBehaviour
         }
     }
 
+    public void StrongAttk_Wait_Combo(int i)
+    {
+        StrongAttkState_list[i - 1] = ComboState.WaitInput;
+    }
+
     public void StrongAttk_End(int i)
     {
-        actionEndTime = CommonUtil.getTimeStamp_Millisecond();
-        actionEndName = "StrongAttk" + i;
+        if (StrongAttkState_list[i - 1] == ComboState.InputSuccess)
+        {
+            PlayerScript.s_instance.StrongAttk(i + 1);
+        }
+        else
+        {
+            PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.Idle);
+        }
+        StrongAttkState_list[i - 1] = ComboState.Disable;
     }
 
     public void Stab_End(int i)

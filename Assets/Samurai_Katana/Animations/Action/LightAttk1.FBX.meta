@@ -591,7 +591,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 1
         messageOptions: 0
-      - time: 0.9679715
+      - time: 1
         functionName: LightAttk_End
         data: 
         objectReferenceParameter: {instanceID: 0}

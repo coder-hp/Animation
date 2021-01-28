@@ -42,7 +42,7 @@ public class PlayerBehaviorKeyboard : MonoBehaviour
         {
             // 人物移动相关
             {
-                float cameraAngle_y = CameraScript.s_instance.transform.eulerAngles.y;
+                float cameraAngle_y = FollowPlayer.s_instance.transform.eulerAngles.y;
 
                 if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
                 {
@@ -105,11 +105,6 @@ public class PlayerBehaviorKeyboard : MonoBehaviour
 
         // 鼠标
         {
-            long actionEndTime = ActionEventFrame.s_instance.actionEndTime;
-            long timeCha = CommonUtil.getTimeStamp_Millisecond() - actionEndTime;
-            string actionEndName = playerScript.getCurrentAnimatorName();
-            string currentAnimatorName = playerScript.getCurrentAnimatorName();
-
             bool isMouseButton0 = Input.GetMouseButtonDown(0);
             bool isMouseButton1 = Input.GetMouseButtonDown(1);
             bool isMouseButton2 = Input.GetMouseButtonDown(2);
@@ -117,83 +112,12 @@ public class PlayerBehaviorKeyboard : MonoBehaviour
             // 左键
             if (isMouseButton0)
             {
-                float comboMaxDur = 500;
-                if (playerScript.checkIsCanAttack(currentAnimatorName))
-                {
-                    if (actionEndName == "LightAttk1")
-                    {
-                        //playerScript.playerBehaviorParam.int_1 = timeCha < comboMaxDur ? 2 : 1;
-                        //playerScript.actionInput(PlayerScript.PlayerBehavior.LightAttk);
-
-                        if (ActionEventFrame.s_instance.LightAttkState_list[0] == ActionEventFrame.ComboState.WaitInput)
-                        {
-                            ActionEventFrame.s_instance.LightAttkState_list[0] = isMouseButton0 ? ActionEventFrame.ComboState.InputSuccess : ActionEventFrame.ComboState.InputFail;
-                        }
-                    }
-                    else if (actionEndName == "LightAttk2")
-                    {
-                        //playerScript.playerBehaviorParam.int_1 = timeCha < comboMaxDur ? 3 : 1;
-                        //playerScript.actionInput(PlayerScript.PlayerBehavior.LightAttk);
-
-                        if (ActionEventFrame.s_instance.LightAttkState_list[1] == ActionEventFrame.ComboState.WaitInput)
-                        {
-                            ActionEventFrame.s_instance.LightAttkState_list[1] = isMouseButton0 ? ActionEventFrame.ComboState.InputSuccess : ActionEventFrame.ComboState.InputFail;
-                        }
-                    }
-                    else if (actionEndName == "LightAttk3")
-                    {
-                        //playerScript.playerBehaviorParam.int_1 = timeCha < comboMaxDur ? 4 : 1;
-                        //playerScript.actionInput(PlayerScript.PlayerBehavior.LightAttk);
-
-                        if (ActionEventFrame.s_instance.LightAttkState_list[2] == ActionEventFrame.ComboState.WaitInput)
-                        {
-                            ActionEventFrame.s_instance.LightAttkState_list[2] = isMouseButton0 ? ActionEventFrame.ComboState.InputSuccess : ActionEventFrame.ComboState.InputFail;
-                        }
-                    }
-                    else if (actionEndName == "LightAttk4")
-                    {
-                        //playerScript.playerBehaviorParam.int_1 = 1;
-                        //playerScript.actionInput(PlayerScript.PlayerBehavior.LightAttk);
-                    }
-                    else
-                    {
-                        PlayerScript.s_instance.playerBehaviorParam.int_1 = 1;
-                        PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.LightAttk);
-                    }
-                }
+                PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.LightAttk);
             }
             // 右键
             else if (isMouseButton1)
             {
-                float comboMaxDur = 500;
-                if (playerScript.checkIsCanAttack(currentAnimatorName))
-                {
-                    if (actionEndName == "StrongAttk1")
-                    {
-                        playerScript.playerBehaviorParam.int_1 = timeCha < comboMaxDur ? 2 : 1;
-                        playerScript.actionInput(PlayerScript.PlayerBehavior.StrongAttk);
-                    }
-                    else if (actionEndName == "StrongAttk2")
-                    {
-                        playerScript.playerBehaviorParam.int_1 = timeCha < comboMaxDur ? 3 : 1;
-                        playerScript.actionInput(PlayerScript.PlayerBehavior.StrongAttk);
-                    }
-                    else if (actionEndName == "StrongAttk3")
-                    {
-                        playerScript.playerBehaviorParam.int_1 = timeCha < comboMaxDur ? 4 : 1;
-                        playerScript.actionInput(PlayerScript.PlayerBehavior.StrongAttk);
-                    }
-                    else if (actionEndName == "StrongAttk4")
-                    {
-                        playerScript.playerBehaviorParam.int_1 = 1;
-                        playerScript.actionInput(PlayerScript.PlayerBehavior.StrongAttk);
-                    }
-                    else
-                    {
-                        playerScript.playerBehaviorParam.int_1 = 1;
-                        playerScript.actionInput(PlayerScript.PlayerBehavior.StrongAttk);
-                    }
-                }
+                PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.StrongAttk);
             }
             // 鼠标滚轮
             else if(isMouseButton2)

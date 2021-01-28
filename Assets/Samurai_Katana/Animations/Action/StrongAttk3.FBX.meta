@@ -577,15 +577,22 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 1
-        functionName: StrongAttk_End
+      - time: 0.43944636
+        functionName: StrongAttk_Hit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 3
         messageOptions: 0
-      - time: 0.43944636
-        functionName: StrongAttk_Hit
+      - time: 0.4973404
+        functionName: StrongAttk_Wait_Combo
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 3
+        messageOptions: 0
+      - time: 1
+        functionName: StrongAttk_End
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

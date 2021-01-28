@@ -42,6 +42,8 @@ public class PlayerScript : MonoBehaviour
     float walkSpeed = 1.2f;
     float runSpeed = 4.2f;
     float rollSpeed = 6f;
+    float fallSpeed = 1.2f;
+    float actionCrossFadeTime = 0.2f;
 
     public bool moveIsWalk = true;
     public PlayerBehaviorParam playerBehaviorParam = new PlayerBehaviorParam();
@@ -57,8 +59,6 @@ public class PlayerScript : MonoBehaviour
         animator = transform.GetComponent<Animator>();
         character = transform.GetComponent<CharacterController>();
 
-        //TrackGameObjScript.s_instance.setTargetObj(gameObject);
-        //CameraScript.s_instance.setTarget(gameObject);
         FollowPlayer.s_instance.setTarget(gameObject);
         
         moveIsWalk = false;
@@ -69,7 +69,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (!character.isGrounded)
         {
-            character.Move(Vector3.down * 10f);        // 10.0f代表重力
+            character.Move(Vector3.down * fallSpeed * Time.deltaTime);  
         }
 
         string currentAnimatorName = getCurrentAnimatorName();
@@ -90,7 +90,7 @@ public class PlayerScript : MonoBehaviour
         {
             case PlayerBehavior.Idle:
                 {
-                    animator.Play("StandIdle");
+                    animator.CrossFadeInFixedTime("StandIdle", actionCrossFadeTime);
                     break;
                 }
 
@@ -98,7 +98,7 @@ public class PlayerScript : MonoBehaviour
                 {
                     if (currentAnimatorName == "StandIdle" || currentAnimatorName == "Run_Weapon" || currentAnimatorName == "WalkForward_Stop")
                     {
-                        animator.Play("WalkForward");
+                        animator.CrossFadeInFixedTime("WalkForward", actionCrossFadeTime * 0.5f);
                         character.Move(transform.forward * walkSpeed * Time.deltaTime);
                         transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
                     }
@@ -115,7 +115,7 @@ public class PlayerScript : MonoBehaviour
                 {
                     if (currentAnimatorName == "WalkForward")
                     {
-                        animator.Play("WalkForward_Stop");
+                        animator.CrossFadeInFixedTime("StandIdle", actionCrossFadeTime);
                     }
                     break;
                 }
@@ -124,7 +124,7 @@ public class PlayerScript : MonoBehaviour
                 {
                     if (currentAnimatorName == "StandIdle" || currentAnimatorName == "WalkForward" || currentAnimatorName == "RunForward_Stop")
                     {
-                        animator.Play("Run_Weapon");
+                        animator.CrossFadeInFixedTime("Run_Weapon", actionCrossFadeTime * 0.5f);
                         character.Move(transform.forward * runSpeed * Time.deltaTime);
                         transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
                     }
@@ -141,14 +141,14 @@ public class PlayerScript : MonoBehaviour
                 {
                     if (currentAnimatorName == "Run_Weapon")
                     {
-                        animator.Play("RunForward_Stop");
+                        animator.CrossFadeInFixedTime("StandIdle", actionCrossFadeTime);
                     }
                     break;
                 }
 
             case PlayerBehavior.LightAttk:
                 {
-                    animator.Play("LightAttk" + playerBehaviorParam.int_1);
+                    LightAttkEvent();
                     break;
                 }     
 
@@ -160,25 +160,25 @@ public class PlayerScript : MonoBehaviour
 
             case PlayerBehavior.Block:
                 {
-                    animator.Play("Block_GetHit_Right");
+                    animator.CrossFadeInFixedTime("Block_GetHit_Right", actionCrossFadeTime);
                     break;
                 }
 
             case PlayerBehavior.Dodge_Back:
                 {
-                    animator.Play("Dodge_Back");
+                    animator.CrossFadeInFixedTime("Dodge_Back", actionCrossFadeTime);
                     break;
                 }
 
             case PlayerBehavior.Dodge_Front:
                 {
-                    animator.Play("Dodge_Front");
+                    animator.CrossFadeInFixedTime("Dodge_Front", actionCrossFadeTime);
                     break;
                 }
 
             case PlayerBehavior.StrongAttk:
                 {
-                    animator.Play("StrongAttk" + playerBehaviorParam.int_1);
+                    StrongAttkEvent();
                     break;
                 }
         }
@@ -187,6 +187,88 @@ public class PlayerScript : MonoBehaviour
     // 碰撞回调
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
+    }
+
+    void LightAttkEvent()
+    {
+        string currentAnimatorName = getCurrentAnimatorName();
+        if (checkIsCanAttack(currentAnimatorName))
+        {
+            if (currentAnimatorName == "LightAttk1")
+            {
+                if (ActionEventFrame.s_instance.LightAttkState_list[0] == ActionEventFrame.ComboState.WaitInput)
+                {
+                    ActionEventFrame.s_instance.LightAttkState_list[0] = ActionEventFrame.ComboState.InputSuccess;
+                }
+            }
+            else if (currentAnimatorName == "LightAttk2")
+            {
+                if (ActionEventFrame.s_instance.LightAttkState_list[1] == ActionEventFrame.ComboState.WaitInput)
+                {
+                    ActionEventFrame.s_instance.LightAttkState_list[1] = ActionEventFrame.ComboState.InputSuccess;
+                }
+            }
+            else if (currentAnimatorName == "LightAttk3")
+            {
+                if (ActionEventFrame.s_instance.LightAttkState_list[2] == ActionEventFrame.ComboState.WaitInput)
+                {
+                    ActionEventFrame.s_instance.LightAttkState_list[2] = ActionEventFrame.ComboState.InputSuccess;
+                }
+            }
+            else if (currentAnimatorName == "LightAttk4")
+            {
+            }
+            else
+            {
+                LightAttk(1);
+            }
+        }
+    }
+
+    public void LightAttk(int action)
+    {
+        animator.CrossFadeInFixedTime("LightAttk" + action, actionCrossFadeTime);
+    }
+
+    void StrongAttkEvent()
+    {
+        string currentAnimatorName = getCurrentAnimatorName();
+        if (checkIsCanAttack(currentAnimatorName))
+        {
+            if (currentAnimatorName == "StrongAttk1")
+            {
+                if (ActionEventFrame.s_instance.StrongAttkState_list[0] == ActionEventFrame.ComboState.WaitInput)
+                {
+                    ActionEventFrame.s_instance.StrongAttkState_list[0] = ActionEventFrame.ComboState.InputSuccess;
+                }
+            }
+            else if (currentAnimatorName == "StrongAttk2")
+            {
+                if (ActionEventFrame.s_instance.StrongAttkState_list[1] == ActionEventFrame.ComboState.WaitInput)
+                {
+                    ActionEventFrame.s_instance.StrongAttkState_list[1] = ActionEventFrame.ComboState.InputSuccess;
+                }
+            }
+            else if (currentAnimatorName == "StrongAttk3")
+            {
+                if (ActionEventFrame.s_instance.StrongAttkState_list[2] == ActionEventFrame.ComboState.WaitInput)
+                {
+                    ActionEventFrame.s_instance.StrongAttkState_list[2] = ActionEventFrame.ComboState.InputSuccess;
+                }
+            }
+            else if (currentAnimatorName == "StrongAttk4")
+            {
+            }
+            else
+            {
+                StrongAttk(1);
+            }
+        }
+    }
+
+    public void StrongAttk(int action)
+    {
+        animator.CrossFadeInFixedTime("StrongAttk" + action, actionCrossFadeTime);
     }
 
     public void GetHit()
