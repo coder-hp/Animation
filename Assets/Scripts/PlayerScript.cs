@@ -31,6 +31,8 @@ public class PlayerScript : MonoBehaviour
 
     public Transform weapon;
     public Transform blood_front;
+    public Transform lookTarget = null;
+    public Transform lockTargetUI = null;
 
     public Animator animator;
     CharacterController character;
@@ -83,9 +85,8 @@ public class PlayerScript : MonoBehaviour
             character.Move(transform.forward * rollSpeed * Time.deltaTime);
         }
 
-        FollowPlayer.s_instance.refresh();
-
-        //Debug.Log(Math.Round(CommonUtil.twoObjDistance_3D(gameObject,FollowPlayer.s_instance.gameObject), 2));
+        lookEnemy();
+        FollowPlayer.s_instance.refreash();
     }
 
     public void actionInput(PlayerBehavior playerBehavior)
@@ -106,12 +107,16 @@ public class PlayerScript : MonoBehaviour
                         animator.CrossFadeInFixedTime("WalkForward", actionCrossFadeTime * 0.5f);
                         character.Move(transform.forward * walkSpeed * Time.deltaTime);
                         transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
+                        //lookEnemy();
+                        FollowPlayer.s_instance.refreash();
                     }
 
                     if (currentAnimatorName == "WalkForward")
                     {
                         character.Move(transform.forward * walkSpeed * Time.deltaTime);
                         transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
+                        //lookEnemy();
+                        FollowPlayer.s_instance.refreash();
                     }
                     break;
                 }
@@ -130,20 +135,20 @@ public class PlayerScript : MonoBehaviour
                     if (currentAnimatorName == "StandIdle" || currentAnimatorName == "WalkForward" || currentAnimatorName == "RunForward_Stop")
                     {
                         animator.CrossFadeInFixedTime("Run_Weapon", actionCrossFadeTime * 0.5f);
-                        character.Move(transform.forward * runSpeed * Time.deltaTime);
                         transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
+                        character.Move(transform.forward * runSpeed * Time.deltaTime);
+                        //lookEnemy();
+                        FollowPlayer.s_instance.refreash();
                     }
 
                     if (currentAnimatorName == "Run_Weapon")
                     {
-                        character.Move(transform.forward * runSpeed * Time.deltaTime);
                         transform.localRotation = Quaternion.Euler(0, playerBehaviorParam.float_1, 0);
+                        character.Move(transform.forward * runSpeed * Time.deltaTime);
+                        //lookEnemy();
+                        FollowPlayer.s_instance.refreash();
                     }
-
-                    //float xx = playerBehaviorParam.float_1 - FollowPlayer.s_instance.transform.eulerAngles.y;
-                    //Debug.Log(xx);
-                    //FollowPlayer.s_instance.refresh();
-                    //FollowPlayer.s_instance.RotateView(xx > 0 ? -0.4f : 0.4f, 0);
+                    
                     break;
                 }
 
@@ -192,6 +197,37 @@ public class PlayerScript : MonoBehaviour
                     break;
                 }
         }
+    }
+
+    void lookEnemy()
+    {
+        if(lookTarget == null)
+        {
+            return;
+        }
+
+        Vector3 playerPos = transform.position;
+        Vector3 enemyPos = lookTarget.position;
+
+        float k = (playerPos.x - enemyPos.x) / (playerPos.z - enemyPos.z);
+        float angle_y = Mathf.Atan(k) * Mathf.Rad2Deg;
+
+        if (playerPos.z >= enemyPos.z)
+        {
+            angle_y -= 180;
+        }
+
+        Vector3 enemyNowAngle = FollowPlayer.s_instance.transform.eulerAngles;
+        FollowPlayer.s_instance.transform.rotation = Quaternion.Euler(enemyNowAngle.x, angle_y, enemyNowAngle.z);
+        lockTargetUI.localPosition = WorldToCanvasPoint(GameObject.Find("Canvas").GetComponent<Canvas>(), lookTarget.Find("Bip01/Bip01_Pelvis/lockPos").position);
+    }
+
+    public Vector2 WorldToCanvasPoint(Canvas canvas, Vector3 worldPos)
+    {
+        Vector2 pos;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform,
+            Camera.main.WorldToScreenPoint(worldPos), canvas.worldCamera, out pos);
+        return pos;
     }
 
     // 碰撞回调
@@ -345,5 +381,15 @@ public class PlayerScript : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void setLookTarget(Transform trans)
+    {
+        lookTarget = trans;
+        lockTargetUI.gameObject.SetActive(lookTarget ? true : false);
+        if (lookTarget != null)
+        {
+            lookEnemy();
+        }
     }
 }

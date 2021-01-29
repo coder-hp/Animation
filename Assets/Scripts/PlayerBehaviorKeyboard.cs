@@ -100,9 +100,22 @@ public class PlayerBehaviorKeyboard : MonoBehaviour
                 {
                     playerScript.actionInput(PlayerScript.PlayerBehavior.Dodge_Front);
                 }
+                // 视角旋转开关
                 else if(Input.GetKeyUp(KeyCode.LeftAlt))
                 {
                     FollowPlayer.s_instance.isRotate = !FollowPlayer.s_instance.isRotate;
+                }
+                // 锁定敌人开关
+                else if (Input.GetKeyUp(KeyCode.LeftShift))
+                {
+                    if (playerScript.lookTarget == null)
+                    {
+                        playerScript.setLookTarget(EnemyPig.s_instance.transform);
+                    }
+                    else
+                    {
+                        playerScript.setLookTarget(null);
+                    }
                 }
             }
         }

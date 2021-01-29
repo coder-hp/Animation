@@ -38,57 +38,35 @@ public class FollowPlayer : MonoBehaviour
         transform.position = offSetPostion + target.position;
     }
 
-    public void refresh()
+    public void refreash()
     {
         if (target == null)
         {
             return;
         }
 
-        //transform.position = offSetPostion + target.position;
+        transform.position = offSetPostion + target.position;
     }
 
     public void RotateView(float mouse_x, float mouse_y)
     {
-        Vector3 angle = transform.eulerAngles;
-        transform.rotation = Quaternion.Euler(angle.x - mouse_y, angle.y + mouse_x, angle.z);
-        return;
         if (!isRotate)
         {
             return;
         }
 
-        if (mouse_x == 0 && mouse_y == 0)
+        Vector3 angle = transform.eulerAngles;
+        transform.rotation = Quaternion.Euler(angle.x - mouse_y, angle.y + mouse_x, angle.z);
+
+        Vector3 rotate = transform.eulerAngles;
+        if(rotate.x < 0 || rotate.x > 350)
         {
-            return;
+            transform.rotation = Quaternion.Euler(0, rotate.y, rotate.z);
         }
-
-        if (isCanRotate_h)
+        else if(rotate.x > 50)
         {
-            if (mouse_x != 0)
-            {
-                transform.RotateAround(target.position, target.up, rotateSpeed * mouse_x);
-            }
+            transform.rotation = Quaternion.Euler(50, rotate.y, rotate.z);
         }
-
-        if (isCanRotate_v)
-        {
-            if (mouse_y != 0)
-            {
-                Vector3 originalPos = transform.position;
-                Quaternion originalRotation = transform.rotation;
-
-                transform.RotateAround(target.position, transform.right, -rotateSpeed * mouse_y);
-                float x = transform.eulerAngles.x;
-                if (x > 60 || x < -10)
-                {
-                    transform.position = originalPos;
-                    transform.rotation = originalRotation;
-                }
-            }
-        }
-
-        offSetPostion = transform.position - target.position;
     }
 
     public void ScrollView(float value)
