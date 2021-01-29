@@ -30,12 +30,12 @@ public class FollowPlayer : MonoBehaviour
 
     void Update()
     {
-        //if (target == null)
-        //{
-        //    return;
-        //}
+        if (target == null)
+        {
+            return;
+        }
 
-        //transform.position = offSetPostion + target.position;
+        transform.position = offSetPostion + target.position;
     }
 
     public void refresh()
@@ -45,11 +45,14 @@ public class FollowPlayer : MonoBehaviour
             return;
         }
 
-        transform.position = offSetPostion + target.position;
+        //transform.position = offSetPostion + target.position;
     }
 
     public void RotateView(float mouse_x, float mouse_y)
     {
+        Vector3 angle = transform.eulerAngles;
+        transform.rotation = Quaternion.Euler(angle.x - mouse_y, angle.y + mouse_x, angle.z);
+        return;
         if (!isRotate)
         {
             return;

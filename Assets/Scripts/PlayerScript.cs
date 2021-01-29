@@ -85,7 +85,7 @@ public class PlayerScript : MonoBehaviour
 
         FollowPlayer.s_instance.refresh();
 
-        Debug.Log(Math.Round(CommonUtil.twoObjDistance_3D(gameObject,FollowPlayer.s_instance.gameObject), 2));
+        //Debug.Log(Math.Round(CommonUtil.twoObjDistance_3D(gameObject,FollowPlayer.s_instance.gameObject), 2));
     }
 
     public void actionInput(PlayerBehavior playerBehavior)
