@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class EnemyPig : EnemyScript
 
     PlayerScript playerScript = null;
 
-    public bool isStartFight = false;
+    public bool isStartFight = true;
     public GameObject skill;
 
     float restAttackTime = 2;
@@ -26,19 +27,24 @@ public class EnemyPig : EnemyScript
 
     void Update()
     {
-        // 攻击倒计时
-        if(isStartFight)
-        {
-            restAttackTime -= Time.deltaTime;
-            if (restAttackTime <= 0)
-            {
-                //restAttackTime = RandomUtil.getRandom(1,4);
-                //setState(EnemyState.Attack);
+        Transform enemy = findEnemy();
+        transform.DOMove(enemy.position,5).SetEase(Ease.Linear);
 
-                restAttackTime = RandomUtil.getRandom(10, 15);
-                setState(EnemyState.Skill);
-            }
-        }
+        // 攻击倒计时
+        //if (isStartFight)
+        //{
+        //    restAttackTime -= Time.deltaTime;
+        //    if (restAttackTime <= 0)
+        //    {
+        //        // 普攻
+        //        restAttackTime = RandomUtil.getRandom(3, 5);
+        //        setState(EnemyState.Attack);
+
+        //        // 技能
+        //        //restAttackTime = RandomUtil.getRandom(10, 15);
+        //        //setState(EnemyState.Skill);
+        //    }
+        //}
     }
 
     public override void setState(EnemyState _enemyState)
@@ -123,5 +129,10 @@ public class EnemyPig : EnemyScript
         }
 
         return false;
+    }
+
+    Transform findEnemy()
+    {
+        return playerScript.transform;
     }
 }

@@ -34,7 +34,7 @@ public class PlayerBehaviorKeyboard : MonoBehaviour
             float value = Input.GetAxis("Mouse ScrollWheel");
             if (value != 0)
             {
-                FollowPlayer.s_instance.ScrollView(value);
+                FollowPlayer.s_instance.ChangeCameraDistance(value);
             }
         }
 
@@ -117,6 +117,11 @@ public class PlayerBehaviorKeyboard : MonoBehaviour
                         playerScript.setLookTarget(null);
                     }
                 }
+                else if (Input.GetKeyDown(KeyCode.F))
+                {
+                    // 格挡
+                    playerScript.actionInput(PlayerScript.PlayerBehavior.Block);
+                }
             }
         }
 
@@ -135,12 +140,6 @@ public class PlayerBehaviorKeyboard : MonoBehaviour
             else if (isMouseButton1)
             {
                 PlayerScript.s_instance.actionInput(PlayerScript.PlayerBehavior.StrongAttk);
-            }
-            // 鼠标滚轮
-            else if(isMouseButton2)
-            {
-                // 格挡
-                playerScript.actionInput(PlayerScript.PlayerBehavior.Block);
             }
         }
     }

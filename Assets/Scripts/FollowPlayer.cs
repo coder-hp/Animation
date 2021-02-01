@@ -1,18 +1,18 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
     public static FollowPlayer s_instance;
-
-    float distance = 0;
-    float scrollSpeed = 15;
-    float rotateSpeed = 2;
+    
+    float rotateSpeed = 1.5f;
 
     Transform target = null;
     Vector3 offSetPostion;          // 镜头位置偏移量
 
+    public new Transform camera;
     public bool isRotate = true;
     bool isCanRotate_h = true;      // 鼠标左右滑动
     bool isCanRotate_v = true;      // 鼠标上下滑动
@@ -55,6 +55,9 @@ public class FollowPlayer : MonoBehaviour
             return;
         }
 
+        mouse_x *= rotateSpeed;
+        mouse_y *= rotateSpeed;
+
         Vector3 angle = transform.eulerAngles;
         transform.rotation = Quaternion.Euler(angle.x - mouse_y, angle.y + mouse_x, angle.z);
 
@@ -69,11 +72,20 @@ public class FollowPlayer : MonoBehaviour
         }
     }
 
-    public void ScrollView(float value)
+    // 镜头拉近拉远
+    public void ChangeCameraDistance(float value)
     {
-        distance = offSetPostion.magnitude;                             // 返回向量的长度
-        distance -= value * scrollSpeed;                                // 返回虚拟轴的值Mouse ScrollWheel：鼠标滑轮
-        distance = Mathf.Clamp(distance, 2, 18);                        // 限制镜头最近和最远距离
-        offSetPostion = offSetPostion.normalized * distance;
+        // 拉远
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            camera.DOLocalMove(camera.localPosition * 1.2f, 0.2f).SetEase(Ease.Linear);
+            //camera.localPosition *= 1.1f;
+        }
+        // 拉近
+        else if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            camera.DOLocalMove(camera.localPosition * 0.8f, 0.2f).SetEase(Ease.Linear);
+            //camera.localPosition *= 0.9f;
+        }
     }
 }

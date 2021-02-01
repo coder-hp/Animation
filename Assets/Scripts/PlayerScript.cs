@@ -175,7 +175,7 @@ public class PlayerScript : MonoBehaviour
 
             case PlayerBehavior.Block:
                 {
-                    animator.CrossFadeInFixedTime("Block_GetHit_Right", actionCrossFadeTime);
+                    animator.CrossFadeInFixedTime("Block_GetHit_Right", 0.1f);
                     break;
                 }
 
