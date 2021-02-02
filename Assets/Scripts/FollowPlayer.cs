@@ -59,6 +59,8 @@ public class FollowPlayer : MonoBehaviour
         mouse_y *= rotateSpeed;
 
         Vector3 angle = transform.eulerAngles;
+
+        //transform.DORotate(new Vector3(angle.x - mouse_y, angle.y + mouse_x, angle.z),0.1f);
         transform.rotation = Quaternion.Euler(angle.x - mouse_y, angle.y + mouse_x, angle.z);
 
         Vector3 rotate = transform.eulerAngles;

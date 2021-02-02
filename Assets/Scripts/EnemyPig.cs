@@ -27,8 +27,8 @@ public class EnemyPig : EnemyScript
 
     void Update()
     {
-        Transform enemy = findEnemy();
-        transform.DOMove(enemy.position,5).SetEase(Ease.Linear);
+        //Transform enemy = findEnemy();
+        //transform.DOMove(enemy.position,5).SetEase(Ease.Linear);
 
         // 攻击倒计时
         //if (isStartFight)
