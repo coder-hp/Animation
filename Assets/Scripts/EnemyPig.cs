@@ -13,12 +13,15 @@ public class EnemyPig : EnemyScript
     public GameObject skill;
 
     float restAttackTime = 2;
+    float walkSpeed = 1f;
+    bool isLookTarget = true;
 
     void Start()
     {
         s_instance = this; 
         playerScript = PlayerScript.s_instance;
-        animator = transform.GetComponent<Animator>(); 
+        animator = transform.GetComponent<Animator>();
+        character = transform.GetComponent<CharacterController>();
         blood_size = blood_front.GetComponent<RectTransform>().sizeDelta;
 
         fullBlood = 100;
@@ -27,24 +30,73 @@ public class EnemyPig : EnemyScript
 
     void Update()
     {
-        //Transform enemy = findEnemy();
-        //transform.DOMove(enemy.position,5).SetEase(Ease.Linear);
+        if (isLookTarget)
+        {
+            float x = playerScript.transform.position.x - transform.position.x;
+            float z = playerScript.transform.position.z - transform.position.z;
 
-        // 攻击倒计时
-        //if (isStartFight)
-        //{
-        //    restAttackTime -= Time.deltaTime;
-        //    if (restAttackTime <= 0)
-        //    {
-        //        // 普攻
-        //        restAttackTime = RandomUtil.getRandom(3, 5);
-        //        setState(EnemyState.Attack);
+            if (x == 0 && z < 0)
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            else if (x < 0 && z < 0)
+            {
+                transform.rotation = Quaternion.Euler(0, -Mathf.Atan(z / x) * Mathf.Rad2Deg - 90, 0);
+            }
+            else if (x > 0 && z < 0)
+            {
+                transform.rotation = Quaternion.Euler(0, -Mathf.Atan(z / x) * Mathf.Rad2Deg + 90, 0);
+            }
+            else if (x > 0 && z > 0)
+            {
+                transform.rotation = Quaternion.Euler(0, -Mathf.Atan(z / x) * Mathf.Rad2Deg + 90, 0);
+            }
+            else if (x < 0 && z > 0)
+            {
+                transform.rotation = Quaternion.Euler(0, -Mathf.Atan(z / x) * Mathf.Rad2Deg - 90, 0);
+            }
+        }
 
-        //        // 技能
-        //        //restAttackTime = RandomUtil.getRandom(10, 15);
-        //        //setState(EnemyState.Skill);
-        //    }
-        //}
+        if (CommonUtil.twoObjDistance_3D(gameObject,playerScript.gameObject) > 2)
+        {
+            if (getCurrentAnimatorName() != "walk")
+            {
+                animator.Play("walk");
+            }
+            character.Move(transform.forward * walkSpeed * Time.deltaTime);
+        }
+        else
+        {
+            // 攻击倒计时
+            if (isStartFight)
+            {
+                restAttackTime -= Time.deltaTime;
+                if (restAttackTime <= 0)
+                {
+                    // 普攻
+                    restAttackTime = RandomUtil.getRandom(3, 5);
+                    setState(EnemyState.Attack);
+
+                    // 技能
+                    //restAttackTime = RandomUtil.getRandom(10, 15);
+                    //setState(EnemyState.Skill);
+                }
+                else
+                {
+                    if (getCurrentAnimatorName() != "Standby")
+                    {
+                        animator.Play("Standby");
+                    }
+                }
+            }
+            else
+            {
+                if (getCurrentAnimatorName() != "Standby")
+                {
+                    animator.Play("Standby");
+                }
+            }
+        }
     }
 
     public override void setState(EnemyState _enemyState)

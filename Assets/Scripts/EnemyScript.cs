@@ -21,6 +21,7 @@ public class EnemyScript : MonoBehaviour
 
     public Transform blood_front;
     public Animator animator;
+    public CharacterController character;
     public EnemyState enemyState = EnemyState.Idle;
 
     void Start()
@@ -34,5 +35,16 @@ public class EnemyScript : MonoBehaviour
 
     public virtual void setState(EnemyState _enemyState)
     {
+    }
+
+    // 获取当前播放动画名称
+    public string getCurrentAnimatorName()
+    {
+        if (animator.GetCurrentAnimatorClipInfo(0).Length > 0)
+        {
+            return animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+        }
+
+        return "";
     }
 }

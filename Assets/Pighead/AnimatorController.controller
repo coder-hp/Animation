@@ -1,31 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1102 &-7790840909911597744
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: walk
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 1168ffd81e28d0e4985433b5cb431748, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1101 &-5962085258751849680
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -73,9 +47,6 @@ AnimatorStateMachine:
     m_State: {fileID: -912500468763902349}
     m_Position: {x: 400, y: -140, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -7790840909911597744}
-    m_Position: {x: 400, y: -80, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: 6055240588396202607}
     m_Position: {x: 400, y: 40, z: 0}
   - serializedVersion: 1
@@ -93,6 +64,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 5420178398825384608}
     m_Position: {x: 400, y: -20, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 7274885913541395756}
+    m_Position: {x: 400, y: -80, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -476,6 +450,32 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 93b830a478aae2c4883e38827d0624ef, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &7274885913541395756
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: walk
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 1168ffd81e28d0e4985433b5cb431748, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
