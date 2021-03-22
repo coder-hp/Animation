@@ -9,12 +9,10 @@ public class EnemyPig : EnemyScript
 
     PlayerScript playerScript = null;
 
-    public bool isStartFight = true;
     public GameObject skill;
 
-    float restAttackTime = 2;
+    float waitTime = 2;
     float walkSpeed = 1f;
-    bool isLookTarget = true;
 
     void Start()
     {
@@ -30,79 +28,134 @@ public class EnemyPig : EnemyScript
 
     void Update()
     {
-        if (isLookTarget)
-        {
-            float x = playerScript.transform.position.x - transform.position.x;
-            float z = playerScript.transform.position.z - transform.position.z;
+        string curAniName = getCurrentAnimatorName();
+        float distance = CommonUtil.twoObjDistance_3D(gameObject, playerScript.gameObject);
 
-            if (x == 0 && z < 0)
+        // 攻击范围内
+        if (distance <= 1.5f)
+        {
+            switch (enemyState)
             {
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-            }
-            else if (x < 0 && z < 0)
-            {
-                transform.rotation = Quaternion.Euler(0, -Mathf.Atan(z / x) * Mathf.Rad2Deg - 90, 0);
-            }
-            else if (x > 0 && z < 0)
-            {
-                transform.rotation = Quaternion.Euler(0, -Mathf.Atan(z / x) * Mathf.Rad2Deg + 90, 0);
-            }
-            else if (x > 0 && z > 0)
-            {
-                transform.rotation = Quaternion.Euler(0, -Mathf.Atan(z / x) * Mathf.Rad2Deg + 90, 0);
-            }
-            else if (x < 0 && z > 0)
-            {
-                transform.rotation = Quaternion.Euler(0, -Mathf.Atan(z / x) * Mathf.Rad2Deg - 90, 0);
+                case EnemyState.Walk:
+                    {
+                        setState(EnemyState.Idle);
+                        break;
+                    }
+
+                case EnemyState.Idle:
+                    {
+                        setState(EnemyState.Wait,3);
+                        break;
+                    }
+
+                case EnemyState.Wait:
+                    {
+                        waitTime -= Time.deltaTime;
+                        if (waitTime <= 0)
+                        {
+                            // 普攻
+                            waitTime = 3;
+                            setState(EnemyState.Attack);
+
+                            // 技能
+                            //waitTime = RandomUtil.getRandom(10, 15);
+                            //setState(EnemyState.Skill);
+                        }
+                        break;
+                    }
+
+                case EnemyState.Attack:
+                    {
+                        if(curAniName == "Standby")
+                        {
+                            setState(EnemyState.Wait, 3);
+                        }
+                        break;
+                    }
+
+                case EnemyState.GetHit:
+                    {
+                        if (curAniName == "Standby")
+                        {
+                            setState(EnemyState.Wait, 3);
+                        }
+                        break;
+                    }
             }
         }
-
-        if (CommonUtil.twoObjDistance_3D(gameObject,playerScript.gameObject) > 2)
+        // 跟踪范围内
+        else if (distance <= 8f)
         {
-            if (getCurrentAnimatorName() != "walk")
+            // 朝向敌人
             {
-                animator.Play("walk");
+                float x = playerScript.transform.position.x - transform.position.x;
+                float z = playerScript.transform.position.z - transform.position.z;
+
+                if (x == 0 && z < 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
+                }
+                else if (x < 0 && z < 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, -Mathf.Atan(z / x) * Mathf.Rad2Deg - 90, 0);
+                }
+                else if (x > 0 && z < 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, -Mathf.Atan(z / x) * Mathf.Rad2Deg + 90, 0);
+                }
+                else if (x > 0 && z > 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, -Mathf.Atan(z / x) * Mathf.Rad2Deg + 90, 0);
+                }
+                else if (x < 0 && z > 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, -Mathf.Atan(z / x) * Mathf.Rad2Deg - 90, 0);
+                }
             }
+
+            setState(EnemyState.Walk);
             character.Move(transform.forward * walkSpeed * Time.deltaTime);
         }
         else
         {
-            // 攻击倒计时
-            if (isStartFight)
-            {
-                restAttackTime -= Time.deltaTime;
-                if (restAttackTime <= 0)
-                {
-                    // 普攻
-                    restAttackTime = RandomUtil.getRandom(3, 5);
-                    setState(EnemyState.Attack);
-
-                    // 技能
-                    //restAttackTime = RandomUtil.getRandom(10, 15);
-                    //setState(EnemyState.Skill);
-                }
-                else
-                {
-                    if (getCurrentAnimatorName() != "Standby")
-                    {
-                        animator.Play("Standby");
-                    }
-                }
-            }
-            else
-            {
-                if (getCurrentAnimatorName() != "Standby")
-                {
-                    animator.Play("Standby");
-                }
-            }
+            setState(EnemyState.Idle);
         }
     }
 
-    public override void setState(EnemyState _enemyState)
+    public override void setState(EnemyState _enemyState,float param = 0)
     {
+        enemyState = _enemyState;
+        string curAniName = getCurrentAnimatorName();
         switch (_enemyState)
         {
+            case EnemyState.Idle:
+                {
+                    if (curAniName != "Standby")
+                    {
+                        animator.Play("Standby");
+                    }
+                    break;
+                }
+
+            case EnemyState.Wait:
+                {
+                    waitTime = param;
+                    if (curAniName != "Standby")
+                    {
+                        animator.Play("Standby");
+                    }
+                    break;
+                }
+
+            case EnemyState.Walk:
+                {
+                    if (curAniName != "walk")
+                    {
+                        animator.Play("walk");
+                    }
+                    break;
+                }
+
             case EnemyState.Attack:
                 {
                     animator.Play("Attack" + RandomUtil.getRandom(1,3));
@@ -126,7 +179,7 @@ public class EnemyPig : EnemyScript
                 {
                     animator.Play("Roar");
                     break;
-                }
+                }            
         }
     }
 

@@ -13,6 +13,7 @@ public class EnemyScript : MonoBehaviour
         Attack,
         Die,
         Skill,
+        Wait,
     }
 
     public Vector2 blood_size;
@@ -33,7 +34,7 @@ public class EnemyScript : MonoBehaviour
         
     }
 
-    public virtual void setState(EnemyState _enemyState)
+    public virtual void setState(EnemyState _enemyState, float param = 0)
     {
     }
 
